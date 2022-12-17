@@ -577,14 +577,14 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
     z-index: 1; }
   .hero .slides {
     background: #ffffff;
-    max-width: 800px;
+    max-width: 700px;
     left: -100px;
     z-index: 0;
     position: relative;
     border-radius: 200px;
     -webkit-box-shadow: 0 25px 50px -10px rgba(26, 55, 77, 0.4);
     box-shadow: 0 25px 50px -10px rgba(26, 55, 77, 0.4);
-    height: 608px;
+    height: 508px;
     margin-bottom: -200px; }
     @media (max-width: 991.98px) {
       .hero .slides {

@@ -84,7 +84,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-s text-center font-weight-bold text-warning text-uppercase mb-1">
-                            <a href="/dashboard/orders">Pending Orders</a></div>
+                            <a href="/dashboard/order">Pending Orders</a></div>
                         <div class="h5 text-center mb-0 font-weight-bold text-gray-800">{{ $orders->count() }}</div>
                     </div>
                     <div class="col-auto">

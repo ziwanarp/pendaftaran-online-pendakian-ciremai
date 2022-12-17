@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Interfaces;
 use App\Models\Kuota;
 
 use Illuminate\Http\Request;
@@ -11,10 +12,13 @@ class UserHomeController extends Controller
 {
     public function index()
     {
+        $data = Interfaces::where('id', 1)->get();
+        $data = $data[0];
 
         return view('user.index', [
             'jalur' => Kuota::all()->groupBy('jalur'),
             'title' => 'Home',
+            'data' => $data,
         ]);
     }
 

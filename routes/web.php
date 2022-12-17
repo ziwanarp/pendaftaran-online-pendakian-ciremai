@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminKuotaController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminInterfaceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserOrderController;
@@ -50,4 +51,10 @@ Route::middleware('admin')->group(function () {
     Route::resource('/dashboard/kuota', AdminKuotaController::class);
     Route::resource('/dashboard/user', AdminUserController::class);
     Route::resource('/dashboard/order', AdminOrderController::class);
+
+    Route::get('/dashboard/interface/slide', [AdminInterfaceController::class, 'slide']);
+    Route::post('/dashboard/interface/slide', [AdminInterfaceController::class, 'update_slide']);
+
+    Route::get('/dashboard/interface/about', [AdminInterfaceController::class, 'about']);
+    Route::post('/dashboard/interface/about', [AdminInterfaceController::class, 'update_about']);
 });

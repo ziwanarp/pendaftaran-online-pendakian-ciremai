@@ -6,11 +6,16 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Dashboard <sup>Admin</sup></div>
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Admin
+            </div>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
@@ -41,5 +46,15 @@
             <div class="sidebar-heading">
                 Interface
             </div>
+            <li class="nav-item {{ Request::is('dashboard/interface/slide*') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard/interface/slide">
+                    <i class="fas fa-fw fa-images"></i>
+                    <span>Image Slide</span></a>
+            </li>
+            <li class="nav-item {{ Request::is('dashboard/interface/about*') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard/interface/about">
+                    <i class="fas fa-fw fa-info"></i>
+                    <span>About Ciremai</span></a>
+            </li>
         </ul>
         <!-- End of Sidebar -->

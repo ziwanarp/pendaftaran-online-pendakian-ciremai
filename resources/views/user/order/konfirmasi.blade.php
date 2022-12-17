@@ -139,6 +139,7 @@
   <script>
 
     var x = document.getElementById("checkbox").required;
+    
     function previewImage(){
     const bukti_pembayaran =document.querySelector('#bukti_pembayaran');
     const imgPreview = document.querySelector('.img-preview');

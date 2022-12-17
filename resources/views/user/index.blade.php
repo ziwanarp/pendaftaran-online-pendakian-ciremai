@@ -47,10 +47,10 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="slides">
-						<img src="https://getlost.id/wp-content/uploads/2021/04/@eriicksukmataruna2.jpg" alt="Image" class="img-fluid active">
-						<img src="https://nonanomad.com/wp-content/uploads/2020/05/matahari-gunung-ciremai-768x1024.jpg" alt="Image" class="img-fluid">
-						<img src="https://wisato.id/wp-content/uploads/2020/04/Gunung-Ciremai-Via-Apuy-5.jpg" alt="Image" class="img-fluid">
-						<img src="https://aboutcirebon.id/wp-content/uploads/2019/12/39-1.jpg" alt="Image" class="img-fluid">
+						<img src="{{ asset('storage/'. $data->slide_palutungan) }}" alt="Image" class="img-fluid active">
+						<img src="{{ asset('storage/'. $data->slide_linggarjati) }}" alt="Image" class="img-fluid">
+						<img src="{{ asset('storage/'. $data->slide_linggasana) }}" alt="Image" class="img-fluid">
+						<img src="{{ asset('storage/'. $data->slide_apuy) }}" alt="Image" class="img-fluid">
 					</div>
 				</div>
 			</div>
@@ -62,13 +62,13 @@
 		<div class="container">
 			<div class="row mb-5 justify-content-center">
 				<div class="col-lg-6 text-center">
-					<h2 class="section-title text-center mb-3">Gunung Ciremai</h2>
-					<p>Gunung Ciremai merupakan gunung tertinggi Jawa Barat, berdiri soliter dengan puncak tertinggi 3078 mdpl , berbatasan dengan tiga kabupaten yaitu kabupaten Kuningan, kabupaten Cirebon dan kabupaten Majalengka. Perubahan kawasan hutan gunung Ciremai menjadi Taman Nasional Gunung Ciremai  (TNGC) ditunjuk oleh Menteri Kehutanan pada tahun 2004 melalui Keputusan Menteri Kehutanan Nomor: 424/Menhut-II/2004 tanggal 19 Oktober Tahun 2004, berdasarkan  usulan dari Pemerintah Kabupaten Kabupaten Kuningan dan  Majalengka.</p>
+					<h2 class="section-title text-center mb-3">{{ $data->tentang_title }}</h2>
+					<p>{{ $data->tentang_body }}</p>
 				</div>
 			</div>
 			<div class="row align-items-stretch">
 				<div class="col-lg-4 order-lg-1">
-					<div class="h-100"><div class="frame h-100"><div class="feature-img-bg h-100" style="background-image: url('https://phinemo.com/wp-content/uploads/2019/05/59356673_828803297496094_6286698402563664226_n.jpg');"></div></div></div>
+					<div class="h-100"><div class="frame h-100"><div class="feature-img-bg h-100" style="background-image: url('{{ asset('storage/'. $data->slide_palutungan) }}');"></div></div></div>
 				</div>
 
 				<div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-1" >
@@ -132,7 +132,7 @@
 							<h3>Jalur Palutungan</h3>
 							<span class="location">Kuningan</span>
 						</div>
-						<img src="https://infopendaki.com/wp-content/uploads/2020/12/peta-pendakian-palutungan-ciremai-680x1024.png" alt="Image" class="img-fluid">
+						<img src="{{ asset('storage/'. $data->slide_palutungan) }}" alt="Image" class="img-fluid">
 					</button>
 				</form>
 				</div>
@@ -146,7 +146,7 @@
 							<h3>Jalur Linggarjati</h3>
 							<span class="location">Kuningan</span>
 						</div>
-						<img src="http://infopendaki.com/wp-content/uploads/2020/12/peta-jalur-linggarjati-ciremai.png" alt="Image" class="img-fluid">
+						<img src="{{ asset('storage/'. $data->slide_linggarjati) }}" alt="Image" class="img-fluid">
 					</button>
 				</form>
 				</div>
@@ -160,7 +160,7 @@
 							<h3>Jalur Linggasana</h3>
 							<span class="location">Kuningan</span>
 						</div>
-						<img src="https://infopendaki.com/wp-content/uploads/2020/12/peta-jalur-linggasana-ciremai-680x1024.png" alt="Image" class="img-fluid">
+						<img src="{{ asset('storage/'. $data->slide_linggasana) }}" alt="Image" class="img-fluid">
 					</button>
 				</form>
 				</div>
@@ -175,7 +175,7 @@
 							<h3>Jalur Apuy</h3>
 							<span class="location">Majalengka</span>
 						</div>
-						<img src="https://infopendaki.com/wp-content/uploads/2020/12/peta-jalur-ciremai-via-apuy-681x1024.png" alt="Image" class="img-fluid">
+						<img src="{{ asset('storage/'. $data->slide_apuy) }}" alt="Image" class="img-fluid">
 					</button>
 				</form>
 				</div>
