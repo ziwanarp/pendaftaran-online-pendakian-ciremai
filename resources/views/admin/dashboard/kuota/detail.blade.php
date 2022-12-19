@@ -8,13 +8,29 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tabel Kuota </h1>
 
-    <div class="my-3">
+    
+    <div class="my-3 text-right">
         <a href="" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#ModalTambahKuota">
             <span class="icon text-white-50">
                 <i class="fas fa-calendar-plus"></i>
             </span>
             <span class="text">Tambah Kuota</span>
         </a>
+        <a href="" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#modalImport">
+            <span class="icon text-white-50">
+                <i class="fas fa-file-excel"></i>
+            </span>
+            <span class="text">Import Kuota</span>
+        </a>
+        <form class="d-inline" action="/dashboard/kuota/hapus/{{ request()->jalur }}" method="post">
+            @csrf
+        <button type="submit" class="btn btn-danger btn-icon-split " onclick="return confirm('Hapus semua Kuota expired {{request()->jalur}} ?')">
+            <span class="icon text-white-50">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+            <span class="text">Kuota Expired {{ request()->jalur }}</span>
+        </button>
+        </form>
     </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -41,7 +57,11 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ request()->jalur }}</td>
                             <td>{{ $kuota[0]->tanggal }}</td>
+                            @if ($kuota[0]->tanggal < $today)
+                            <td><p class="btn btn-secondary btn-sm" >Kuota Expired</p></td>
+                            @else
                             <td>{{ collect($kuota)->sum('jumlah_kuota') }}</td>
+                            @endif
                             <td>
                                 <form action="kuota/{{ $kuota[0]->tanggal.$kuota[0]->jalur }}" method="post" class="d-inline">
                                     @csrf
@@ -59,7 +79,6 @@
             </div>
         </div>
     </div>
-    <a href="kuota" class=" btn btn-primary">Kembali</a>
 
 </div>
 <!-- /.container-fluid -->
@@ -107,4 +126,30 @@
     </div>
 </div>
 
+<!-- Modal import kuota -->
+<div class="modal fade" id="modalImport" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel">Import Data Kuota</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/dashboard/kuota/import" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Masukan File (.csv / .xlsx / .xls)</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required> 
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Import</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
 @endsection

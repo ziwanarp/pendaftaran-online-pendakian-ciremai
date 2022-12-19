@@ -28,7 +28,11 @@
                     <td>{{ $k->first()->tanggal }}</td>
                     <td>{{ collect($k)->sum('jumlah_kuota') }}</td>
                     @auth
+                    @if ($k->first()->tanggal < $today)
+                    <td><a href="#" class="btn-secondary btn-sm" >Tanggal Expired</a></td>
+                    @else
                     <td><a href="/order?kuota={{ $k->first()->id }}" class="btn-warning btn-sm" >Booking</a></td>
+                    @endif
                     @else
                         <td><a href="" data-toggle="modal" data-target="#ModalLogin" class="btn-warning btn-sm" >Login Untuk Booking</a></td>
                     @endauth

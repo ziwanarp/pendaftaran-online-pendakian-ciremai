@@ -7,13 +7,24 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tabel Kuota </h1>
-
-    <div class="my-3">
+    <div class="my-3 text-right">
         <a href="" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#ModalTambahKuota">
             <span class="icon text-white-50">
                 <i class="fas fa-calendar-plus"></i>
             </span>
             <span class="text">Tambah Kuota</span>
+        </a>
+        <a href="" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#modalImport">
+            <span class="icon text-white-50">
+                <i class="fas fa-file-excel"></i>
+            </span>
+            <span class="text">Import Kuota</span>
+        </a>
+        <a href="/dashboard/kuota/hapusExpired" onclick="return confirm('Hapus semua kuota expired ?')" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+            <span class="text">Kuota Expired</span>
         </a>
     </div>
     <!-- DataTales Example -->
@@ -48,7 +59,7 @@
                                 <td> Desa Linggajati, Kecamatan Cilimus, Kabupaten Kuningan</td>
                             @endif
                             <td>
-                                <a href="kuota?jalur={{ $kuota[0]->jalur }}" class="btn btn-info btn-icon-split">
+                                <a href="/dashboard/kuota?jalur={{ $kuota[0]->jalur }}" class="btn btn-info btn-icon-split">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-eye"></i>
                                     </span>
@@ -109,5 +120,33 @@
         </div>
     </div>
 </div>
+
+<!-- Modal import kuota -->
+<div class="modal fade" id="modalImport" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel">Import Data Kuota</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/dashboard/kuota/import" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Masukan File (.csv / .xlsx / .xls)</label>
+                        <input type="file" class="form-control" id="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required> 
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Import</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  
 
 @endsection

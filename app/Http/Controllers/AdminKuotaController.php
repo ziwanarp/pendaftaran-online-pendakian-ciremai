@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Kuota;
+use App\Imports\KuotaImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminKuotaController extends Controller
 {
@@ -14,36 +19,84 @@ class AdminKuotaController extends Controller
      */
     public function index()
     {
-
+        // jika terdapat request = jalur maka jalankan if
         if (request('jalur')) {
+
+            // set tanggal hari ini = hari ini+1
+            $date = new DateTime();
+            $today = Carbon::parse($date)->addDays(1)->format('Y-m-d');
+
             return view('admin.dashboard.kuota.detail', [
                 'title' => 'Detail Penjualan Barang',
                 'kuotas' => Kuota::Where('jalur', request('jalur'))->get()->groupBy('tanggal'),
+                'today' => $today,
             ]);
-        } else {
-            // jika tidak ada request, tampilkan index
+        } 
+
+        // jika tidak ada request, tampilkan index
+        else {
             return view('admin.dashboard.kuota.index', [
                 'kuotas' => Kuota::all()->groupBy('jalur')
             ]);
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function hapusPerJalur($request)
     {
-        //
+        // set tanggal hari ini
+        $date = new DateTime();
+        $today = Carbon::parse($date)->addDays(1)->format('Y-m-d');
+
+        // ambil kuota expired
+        $count = Kuota::where('jalur', $request)->where('tanggal', '<', $today)->get();
+
+        // cek apakah ada kuota expired
+        if ($count->count() <= 0) {
+            Alert::error('Hapus Kuota Gagal !!', 'Tidak ada Kuota Expired !');
+            return redirect('/dashboard/kuota?jalur=' . $request);
+        }
+
+        // hapus kuota expired 
+        $result = Kuota::where('jalur', $request)->where('tanggal', '<', $today)->delete();
+
+        // jika hapus gagal / berhasil, maka tampilkan
+        if ($result > 0) {
+            Alert::success('Hapus Kuota Berhasil !!', 'Kuota Expired Jalur ' . $request . 'berhasil di hapus !');
+            return redirect('/dashboard/kuota?jalur=' . $request);
+        } else {
+            Alert::error('Hapus Kuota Gagal !!', 'Kuota Expired Jalur ' . $request . 'gagal di hapus !');
+            return redirect('/dashboard/kuota?jalur=' . $request);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function kuotaExpired()
+    {
+        // set tanggal hari ini
+        $date = new DateTime();
+        $today = Carbon::parse($date)->addDays(1)->format('Y-m-d');
+
+        // ambil kuota expired
+        $count = Kuota::where('tanggal', '<', $today)->get();
+
+        // cek apakah ada kuota expired
+        if ($count->count() <= 0) {
+            Alert::error('Hapus Kuota Gagal !!', 'Tidak ada Kuota Expired !');
+            return redirect('/dashboard/kuota');
+        }
+
+        // hapus kuota expired 
+        $result = Kuota::where('tanggal', '<', $today)->delete();
+
+        // jika hapus gagal / berhasil, maka tampilkan
+        if ($result > 0) {
+            Alert::success('Hapus Kuota Berhasil !!', 'Kuota Expired berhasil di hapus !');
+            return redirect('/dashboard/kuota');
+        } else {
+            Alert::error('Hapus Kuota Gagal !!', 'Kuota Expired gagal di hapus !');
+            return redirect('/dashboard/kuota');
+        }
+    }
+
     public function store(Request $request)
     {
         $rules = [
@@ -52,8 +105,10 @@ class AdminKuotaController extends Controller
             'tanggal' => 'required',
         ];
 
+        // validasi rules
         $validatedData = $request->validate($rules);
 
+        // ambil data bulan & tahun
         $bulan = substr($validatedData['tanggal'], 5, 2);
         $tahun = substr($validatedData['tanggal'], 0, 4);
 
@@ -65,46 +120,15 @@ class AdminKuotaController extends Controller
         return redirect('/dashboard/kuota')->with('success', 'Kuota Barang berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Kuota  $kuota
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Kuota $kuota)
+    public function importKuota(Request $request)
     {
-        //
+
+        $result = Excel::import(new KuotaImport, $request->file('file'));
+
+        Alert::error('Gagal !!', 'Data kuota gagal di import !');
+        return redirect('/dashboard/kuota');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Kuota  $kuota
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Kuota $kuota)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kuota  $kuota
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Kuota $kuota)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Kuota  $kuota
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($kuota)
     {
         $tanggal = substr($kuota, 0, 10);

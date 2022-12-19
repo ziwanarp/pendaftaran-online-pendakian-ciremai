@@ -132,12 +132,12 @@
 						<div class="mb-2">
 							<label for="email" class="form-label">Email :</label>
 							<input type="text" class="form-control" id="email" name="email" required>
-							<small class="text-danger">* Masukan email yang valid</small>
+								<small class="text-danger">*Valid email only</small>
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label">Password :</label>
-							<input type="password" class="form-control" id="password" name="password"  required>
-							<small class="text-danger">* Password minimal 5 digit</small>
+							<input type="password" minlength="5" class="form-control" id="password" name="password"  required>
+								<small class="text-danger">*Length min 5</small>
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -145,6 +145,7 @@
 					<button type="submit" class="btn btn-primary">Login</button>
 				</form>
 				</div>
+				
 			
 			</div>
 		</div>
@@ -172,6 +173,7 @@
   <script src="{{ asset('customer/js/typed.js') }}"></script>
 
   <script>
+
 	$(function() {
 		var slides = $('.slides'),
 		images = slides.find('img');

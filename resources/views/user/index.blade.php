@@ -26,7 +26,7 @@
 										</div>
 										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
 											<label for="tanggal"><strong>Tanggal Mendaki :</strong></label>
-											<input type="date" class="form-control" name="tanggal" id="tanggal" required>
+											<input type="date" class="form-control" min="{{$today}}" name="tanggal" id="tanggal" required>
 										</div>
 										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
 											<label for="jumlah_kuota"><strong>Jumlah Pendaki :</strong></label>

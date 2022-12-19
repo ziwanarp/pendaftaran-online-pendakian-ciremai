@@ -48,9 +48,14 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index']);
-    Route::resource('/dashboard/kuota', AdminKuotaController::class);
+    Route::resource('/dashboard/kuota', AdminKuotaController::class)->except('show');
+    Route::post('/dashboard/kuota/hapus/{request}', [AdminKuotaController::class, 'hapusPerJalur']);
+    Route::get('/dashboard/kuota/hapusExpired', [AdminKuotaController::class, 'kuotaExpired']);
+
     Route::resource('/dashboard/user', AdminUserController::class);
     Route::resource('/dashboard/order', AdminOrderController::class);
+
+    Route::post('/dashboard/kuota/import', [AdminKuotaController::class, 'importKuota']);
 
     Route::get('/dashboard/interface/slide', [AdminInterfaceController::class, 'slide']);
     Route::post('/dashboard/interface/slide', [AdminInterfaceController::class, 'update_slide']);
