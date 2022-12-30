@@ -6,15 +6,15 @@
     <div class="hero hero-inner">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-4 mx-auto text-center">
+        <div class="col-lg-6 mx-auto text-center">
           <div class="intro-wrap">
             <h2 class="mb-4 text-white">Detail Order</h2>
                   <div class="row align-items-center text-white">
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Nama Pemesan</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
-                      <input type="text" name="name" value="{{ $order[0]->user->name }}" readonly>
+                    <div class="col-lg-7 text-white">
+                      <input type="text" class="form-control" name="name" value="{{ $order[0]->user->name }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -22,8 +22,8 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Kode Order</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
-                      <input type="text" name="name" value="{{ $order[0]->kode_order }}" readonly>
+                    <div class="col-lg-7 text-white">
+                      <input type="text" class="form-control" name="name" value="{{ $order[0]->kode_order }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -31,13 +31,13 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Status</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
+                    <div class="col-lg-7 text-white">
                       @if ($order[0]->status == 'Konfirmasi')
-                      <p class="btn-success btn-sm">{{ $order[0]->status }}</p>
+                      <p class="btn-success btn-sm form-control border-0">{{ $order[0]->status }}</p>
                       @elseif ($order[0]->status == 'Tolak')
-                      <p class="btn-danger btn-sm">{{ $order[0]->status }}</p>
+                      <p class="btn-danger btn-sm form-control border-0">{{ $order[0]->status }}</p>
                       @else
-                      <p class="btn-warning btn-sm">{{ $order[0]->status }}</p>
+                      <p class="btn-warning btn-sm form-control border-0">{{ $order[0]->status }}</p>
                       @endif
                     </div>
                   </div>
@@ -46,8 +46,8 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Total Harga</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
-                      <input type="text" name="harga" value="{{ $order[0]->harga }}" readonly>
+                    <div class="col-lg-7 text-white">
+                      <input type="text" name="harga" class="form-control" value="Rp. {{ number_format($order[0]->harga, 0, ".", ".") }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -55,8 +55,8 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Jalur</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
-                      <input type="text" name="jalur" value="{{ $order[0]->kuota->jalur }}" readonly>
+                    <div class="col-lg-7 text-white">
+                      <input type="text" name="jalur" class="form-control" value="{{ $order[0]->kuota->jalur }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -64,8 +64,8 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Tanggal Naik</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
-                      <input type="text" name="tanggal_naik" value="{{ $order[0]->tanggal_naik }}" readonly>
+                    <div class="col-lg-7 text-white">
+                      <input type="text" name="tanggal_naik" class="form-control" value="{{ $order[0]->tanggal_naik }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -73,8 +73,8 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Tanggal Turun</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
-                      <input type="text" name="tanggal_turun" value="{{ $order[0]->tanggal_turun }}" readonly>
+                    <div class="col-lg-7 text-white">
+                      <input type="text" name="tanggal_turun" class="form-control" value="{{ $order[0]->tanggal_turun }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -82,10 +82,8 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Jumlah Pendaki</b> </p>
                     </div>
-                    <div class="col-lg-5 text-white">
-                      <input type="number" name="jumlah_kuota" value="{{ $order[0]->jumlah_kuota }}" readonly>
-                      <input type="hidden" name="status" value="Pending" >
-                      <input type="hidden" name="kode_order" value="CRM-" >
+                    <div class="col-lg-7 text-white">
+                      <input type="number" name="jumlah_kuota" class="form-control" value="{{ $order[0]->jumlah_pendaki }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -93,7 +91,7 @@
                     <div class="col-lg-5">
                       <p class="mb-0 text-left"><b>Bukti pembayaran</b></p>
                     </div>
-                    <div class="col-lg-5 text-white">
+                    <div class="col-lg-7 text-white">
                       <img src="{{ asset('storage/'. $order[0]->bukti_pembayaran) }}" class="img-preview mt-3" width="250px">
                     </div>
                   </div>

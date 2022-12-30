@@ -15,7 +15,7 @@
             <p class="mb-0"><b>Name</b> </p>
           </div>
           <div class="col-sm-9">
-            <input type="text" name="name" value="{{ old('name',$user->name) }}">
+            <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }}">
           </div>
         </div>
         <hr>
@@ -24,7 +24,7 @@
             <p class="mb-0"><b>Jenis Identitas</b></p>
           </div>
           <div class="col-sm-9">
-            <select class="form-select" aria-label="Default select example" id="jenis_identitas" name="jenis_identitas" required>
+            <select class="form-control" aria-label="Default select example" id="jenis_identitas" name="jenis_identitas" required>
                 <option value="">Jenis Identitas</option>
                 <option value="KTP">KTP</option>
                 <option value="SIM">SIM</option>
@@ -38,7 +38,7 @@
             <p class="mb-0"><b>Nomor Identitas</b></p>
           </div>
           <div class="col-sm-9">
-            <input type="text" name="no_identitas" value="{{ old('no_identitas',$user->no_identitas) }}">
+            <input type="text" class="form-control" name="no_identitas" value="{{ old('no_identitas',$user->no_identitas) }}">
           </div>
         </div>
         <hr>
@@ -47,7 +47,7 @@
             <p class="mb-0"><b>Alamat</b></p>
           </div>
           <div class="col-sm-9">
-            <input type="text" name="alamat" value="{{ old('alamat',$user->alamat) }}">
+            <input type="text" class="form-control" name="alamat" value="{{ old('alamat',$user->alamat) }}">
           </div>
         </div>
         <hr>

@@ -18,6 +18,7 @@
                                 <th>Status</th>
                                 <th>Jalur</th>
                                 <th>Tanggal Naik</th>
+                                <th>Reschedule</th>
                                 <th>Cetak Struk Pembayaran</th>
                             </tr>
                         </thead>
@@ -37,6 +38,22 @@
                                     @endif
                                     <td>{{ $order->kuota->jalur }}</td>
                                     <td>{{ $order->tanggal_naik  }}</td>
+                                    @if ($order->status != 'Tolak' & $order->tanggal_naik >= $today & $order->reschedule == 0)  
+                                      <td>
+                                      <a class="text-white btn-success btn-sm border-0" href="/order/reschedule/{{ $order->kode_order }}" >Reschedule <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                                      </svg></a>
+                                      </td>
+                                    @else
+                                      <td>
+                                      <a data-toggle="modal" data-target="#reschedule" class="text-white btn-secondary btn-sm border-0" href="#" >Reschedule <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                                      </svg></a>
+                                      </td>
+                                    @endif
+
                                     @if ($order->status == 'Konfirmasi')
                                       <td>
                                         <form action="/order/struk/{{ $order->kode_order }}" method="get">
@@ -103,6 +120,26 @@
     </div>
   </div>
 
+  {{-- Reschedule --}}
+  <div class="modal fade" id="reschedule" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Tidak dapat Reschedule!</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Reschedul dapat dilakukan maksimal <strong>H-1</strong> sebelum mendaki.</p>
+          <p>Reschedule maksimal <strong>1x</strong>.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
  
 @endsection

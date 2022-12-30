@@ -72,55 +72,55 @@
   
 @endif
 
-  <!-- Modal cek kuota / bulan -->
-  <div class="modal fade" id="ModalCekKuota" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="formModalLabel">Cek Kuota / Bulan</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="/checkkuota/bulan" method="post">
-            @csrf
-            <div class="mb-2">
-              <label for="jalur" class="form-label mr-3">Jalur :</label>
-              <select class="form-select" aria-label="Default select example" id="jalur" name="jalur" required>
-                <option value="">Pilih jalur</option>
-                @foreach ($jalur as $j)
-                <option value="{{ $j->first()->jalur }}">{{ $j->first()->jalur }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="mb-2">
-              <label for="bulan" class="form-label mr-3">Bulan :</label>
-              <select class="form-select" aria-label="Default select example" id="bulan" name="bulan" required>
-                <option value="">Pilih bulan</option>
-                @foreach ($bulan as $b)
-                <option value="{{ $b->first()->bulan }}">{{ $b->first()->bulan }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="mb-2">
-              <label for="tahun" class="form-label mr-3">Tahun :</label>
-              <select class="form-select" aria-label="Default select example" id="tahun" name="tahun" required>
-                <option value="">Pilih tahun</option>
-                @foreach ($tahun as $t)
-                <option value="{{ $t->first()->tahun }}">{{ $t->first()->tahun }}</option>
-                @endforeach
-              </select>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Cari</button>
-        </form>
-        </div>
+<!-- Modal cek kuota / bulan -->
+<div class="modal fade" id="ModalCekKuota" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel">Cek Kuota / Bulan</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form action="/checkkuota/bulan" method="post">
+          @csrf
+          <div class="mb-2">
+            <label for="jalur" class="form-label mr-3">Jalur :</label>
+            <select class="form-control" aria-label="Default select example" id="jalur" name="jalur" required>
+              <option value="">Pilih jalur</option>
+              @foreach ($jalur as $j)
+              <option value="{{ $j->first()->jalur }}">{{ $j->first()->jalur }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="bulan" class="form-label mr-3">Bulan / tahun :</label>
+            <select class="form-control" aria-label="Default select example" id="bulan" name="bulan" required>
+              <option value="">Pilih bulan / tahun</option>
+              @foreach ($bulan as $b)
+              @if ( $b->first()->bulan == 1)
+                <option value="{{ $b->first()->bulan }}">Januari / {{ $b->first()->tahun }}</option>
+              @elseif ( $b->first()->bulan == 2)
+                <option value="{{ $b->first()->bulan }}">Februari / {{ $b->first()->tahun }}</option>
+              @elseif ( $b->first()->bulan == 3)
+                <option value="{{ $b->first()->bulan }}">Maret / {{ $b->first()->tahun }}</option>
+              @elseif ( $b->first()->bulan == 12)
+                <option value="{{ $b->first()->bulan }}">Desember / {{ $b->first()->tahun }}</option>
+              @endif
+              @endforeach
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Cari</button>
+      </form>
+      </div>
+    
     </div>
   </div>
+</div>
 
    <!-- Modal cek kuota / jalur -->
    <div class="modal fade" id="ModalCekKuotaPerJalur" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
@@ -137,7 +137,7 @@
             @csrf
             <div class="mb-2">
               <label for="jalur" class="form-label mr-3">Jalur :</label>
-              <select class="form-select" aria-label="Default select example" id="jalur" name="jalur" required>
+              <select class="form-control" aria-label="Default select example" id="jalur" name="jalur" required>
                 <option value="">Pilih jalur</option>
                 @foreach ($jalur as $j)
                 <option value="{{ $j->first()->jalur }}">{{ $j->first()->jalur }}</option>

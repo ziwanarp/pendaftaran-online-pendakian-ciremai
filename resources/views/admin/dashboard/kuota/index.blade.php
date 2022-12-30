@@ -91,9 +91,9 @@
             <div class="modal-body">
                 <form action="/dashboard/kuota" method="post">
                     @csrf
-                    <div>
+                    <div class="mb-3">
                         <label for="jalur" class="form-label mr-3">Jalur Pendakian :</label>
-                        <select class="form-select" aria-label="Default select example" id="jalur" name="jalur" required>
+                        <select class="form-control" aria-label="Default select example" id="jalur" name="jalur" required>
                             <option value="">Pilih Jalur</option>
                             <option value="Palutungan">Palutungan</option>
                             <option value="Linggarjati">Linggarjati</option>

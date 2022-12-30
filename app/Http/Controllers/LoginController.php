@@ -25,8 +25,13 @@ class LoginController extends Controller
             Auth::user()->last_login = new DateTime();
             User::where('id', Auth::user()->id)->update(['last_login' => Auth::user()->last_login]);
 
-            Alert::success('Login Berhasil !!', 'selamat datang ' . auth()->user()->name);
-            return redirect()->intended('/');
+            if (auth()->user()->role == 'Admin') {
+                Alert::success('Login Berhasil !', 'selamat datang di Dashboard ' . auth()->user()->name);
+                return redirect()->intended('/dashboard');
+            } else {
+                Alert::success('Login Berhasil !', 'selamat datang ' . auth()->user()->name);
+                return redirect()->intended('/');
+            }
         }
         Alert::error('Gagal Login !!', 'Email / Password Salah !!!');
         return redirect('/');
@@ -58,7 +63,8 @@ class LoginController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/')->with('success', 'Registrasi Berhasil, silahkan login !!');
+        Alert::success('Registrasi Berhasil !', 'Silahkan login');
+        return redirect('/');
     }
 
     public function logout(Request $request)

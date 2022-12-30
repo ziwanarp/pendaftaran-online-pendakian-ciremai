@@ -12,17 +12,20 @@ class AdminInterfaceController extends Controller
 {
     public function slide()
     {
+        // jika ada data interface
         $data = Interfaces::where('id', 1)->get();
-        $data = $data[0];
-
-        return view('admin.dashboard.interface.slide', [
-            'data' => $data,
-        ]);
+        if ($data->count() > 0) {
+            $data = $data[0];
+            return view('admin.dashboard.interface.slide', [
+                'data' => $data,
+            ]);
+        }
+        //jika tidak ada data
+        return view('admin.dashboard.interface.slide', []);
     }
 
     public function update_slide()
     {
-
         if (request()->file('slide_palutungan')) {
             if (request()->old_palutungan) {
                 Storage::disk('public')->delete(request()->old_palutungan);
@@ -64,12 +67,16 @@ class AdminInterfaceController extends Controller
 
     public function about()
     {
+        // jidak ada data interface tampilkan
         $data = Interfaces::where('id', 1)->get();
-        $data = $data[0];
-
-        return view('admin.dashboard.interface.about', [
-            'data' => $data,
-        ]);
+        if ($data->count() > 0) {
+            $data = $data[0];
+            return view('admin.dashboard.interface.about', [
+                'data' => $data,
+            ]);
+        }
+        // jika data interface tidak ada
+        return view('admin.dashboard.interface.about', []);
     }
 
     public function update_about()

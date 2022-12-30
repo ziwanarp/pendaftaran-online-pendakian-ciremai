@@ -50,27 +50,24 @@
 							@csrf
 							<div class="mb-2">
 								<label for="name" class="form-label">Name :</label>
-								<input type="text" class="form-control" id="name" name="name" required>
-								<small>* wajib, minimal 5 huruf</small>
+								<input type="text" class="form-control" minlength="5" id="name" name="name" required>
 							</div>
 							<div class="mb-2">
 								<label for="username" class="form-label">Username :</label>
-								<input type="text" class="form-control" id="username" name="username"   required>
-								<small>* wajib, minimal 5 huruf</small>
+								<input type="text" class="form-control" minlength="5" id="username" name="username"   required>
 							</div>
 							<div class="mb-2">
 								<label for="email" class="form-label">Email :</label>
 								<input type="text" class="form-control" id="email" name="email"   required>
-								<small>* wajib, masukan email yang valid</small>
 							</div>
 							<div class="mb-2">
 								<label for="email" class="form-label">Alamat :</label>
-								<input type="text" class="form-control" id="alamat" name="alamat"   required>
+								<input type="text" class="form-control" minlength="5" id="alamat" name="alamat"   required>
 							</div>
 								<input type="hidden"  id="role" name="role" value="User">
 							<div class="mb-2">
 								<label for="jenis_kelamin" class="form-label mr-3">Jenis Kelamin :</label>
-								<select class="form-select" aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin" required>
+								<select class="form-control" aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin" required>
 									<option value="">Pilih JK</option>
 									<option value="L">Laki-Laki</option>
 									<option value="P">Perempuan</option>
@@ -78,7 +75,7 @@
 							</div>
 							<div class="mb-2">
 								<label for="jenis_identitas" class="form-label mr-3">Jenis Identitas :</label>
-								<select class="form-select" aria-label="Default select example" id="jenis_identitas" name="jenis_identitas" required>
+								<select class="form-control" aria-label="Default select example" id="jenis_identitas" name="jenis_identitas" required>
 									<option value="">Pilih Identitas</option>
 									<option value="KTP">KTP</option>
 									<option value="SIM">SIM</option>
@@ -87,13 +84,11 @@
 							</div>
 							<div class="mb-2">
 								<label for="no_identitas" class="form-label">No Identitas :</label>
-								<input type="text" class="form-control" id="no_identitas" name="no_identitas"   required>
-								<small>* wajib, minimal 10 digit</small>
+								<input type="text" class="form-control" minlength="10" id="no_identitas" name="no_identitas"   required>
 							</div>
 							<div class="mb-2">
 								<label for="no_hp" class="form-label">No Hp :</label>
-								<input type="text" class="form-control" id="no_hp" name="no_hp" required>
-								<small>* wajib, minimal 10 digit</small>
+								<input type="text" class="form-control" id="no_hp" minlength="10" name="no_hp" required>
 							</div>
 							<div class="mb-3">
 								<label for="foto_identitas" class="form-label">Foto Identitas :</label>
@@ -102,13 +97,17 @@
 							</div>
 							<div class="mb-3">
 								<label for="password" class="form-label">Password :</label>
-								<input type="password" class="form-control" id="password" name="password"  required>
-								<small>* wajib, minimal 5 huruf</small>
+								<input type="password" class="form-control" minlength="5" id="password" onkeyup='check()' name="password"  required>
+							</div>
+							<div class="mb-3">
+								<label for="confirm_password" class="form-label">Confirm Password :</label>
+								<input type="password" class="form-control" id="confirm_password" onkeyup='check()' name="confirm_password"  required>
+								<span class="mx-0 mt-2" id='message'></span>
 							</div>
 					</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-						<button type="submit" class="btn btn-primary">Register</button>
+						<button type="submit" id="submit" class="btn btn-primary">Register</button>
 					</form>
 					</div>
 				
@@ -131,13 +130,11 @@
 						@csrf
 						<div class="mb-2">
 							<label for="email" class="form-label">Email :</label>
-							<input type="text" class="form-control" id="email" name="email" required>
-								<small class="text-danger">*Valid email only</small>
+							<input type="email" class="form-control" id="email" name="email" required>
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label">Password :</label>
 							<input type="password" minlength="5" class="form-control" id="password" name="password"  required>
-								<small class="text-danger">*Length min 5</small>
 						</div>
 				</div>
 				<div class="modal-footer">
@@ -173,6 +170,19 @@
   <script src="{{ asset('customer/js/typed.js') }}"></script>
 
   <script>
+	var check = function() {
+	if (document.getElementById('password').value ==
+		document.getElementById('confirm_password').value) {
+		document.getElementById('message').style.color = 'green';
+		document.getElementById('message').innerHTML = '✓ Password Confirmed';
+		document.getElementById('submit').disabled = false;
+	} else {
+		document.getElementById('message').style.color = 'red';
+		document.getElementById('message').innerHTML = 'Password Not Confirmed';
+		document.getElementById('submit').disabled = true;
+	}
+	}
+
 
 	$(function() {
 		var slides = $('.slides'),

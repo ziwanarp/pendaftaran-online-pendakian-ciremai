@@ -24,8 +24,13 @@
                         
                     <tbody>
                         <tr>
-                            <td>{{ $data->tentang_title }}</td>
-                            <td>{{ $data->tentang_body }}</td>
+                            @if (isset($data))
+                                <td>{{ $data->tentang_title }}</td>
+                                <td>{{ $data->tentang_body }}</td>
+                            @else
+                                <td>Tidak ada data</td>
+                                <td>Tidak ada data</td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>
@@ -38,11 +43,21 @@
                 @csrf
                 <div class="form-group">
                   <label for="tentang_title">Title</label>
-                  <input type="text" class="form-control" id="tentang_title" name="tentang_title" value="{{ old('tentang_title', $data->tentang_title) }}">
+                  @if (isset($data->tentang_title))
+                    <input type="text" class="form-control" id="tentang_title" name="tentang_title" value="{{ old('tentang_title', $data->tentang_title) }}">
+                  @else
+                  <input type="text" class="form-control" id="tentang_title" name="tentang_title" value="{{ old('tentang_title') }}">
+                  @endif
+            
                 </div>
                 <div class="form-group">
                   <label for="tentang_body">Body</label>
-                  <textarea class="form-control" id="tentang_body" name="tentang_body" value="{{ old('tentang_body', $data->tentang_body) }}" rows="3"></textarea>
+                  @if (isset($data->tentang_body))
+                    <textarea class="form-control" id="tentang_body" name="tentang_body" value="{{ old('tentang_body', $data->tentang_body) }}" rows="3"></textarea>
+                  @else
+                    <textarea class="form-control" id="tentang_body" name="tentang_body" value="{{ old('tentang_body') }}" rows="3"></textarea>
+                  @endif
+
                 </div>
                 <button type="submit" class="btn btn-primary btn-icon-split"><span class="icon text-white-50">
                     <i class="fas fa-save"></i>

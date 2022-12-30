@@ -37,7 +37,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-s text-center font-weight-bold text-success text-uppercase mb-1">
-                            <a href="/dashboard/users">Users</a></div>
+                            <a href="/dashboard/user">Users</a></div>
                         <div class="h5 text-center mb-0 font-weight-bold text-gray-800">{{ $users->count() }}</div>
                     </div>
                     <div class="col-auto">

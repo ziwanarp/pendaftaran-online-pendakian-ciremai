@@ -47,10 +47,31 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="slides">
+
+						@if (isset($data->slide_palutungan))
 						<img src="{{ asset('storage/'. $data->slide_palutungan) }}" alt="Image" class="img-fluid active">
+						@else
+						<img src="https://img.celebrities.id/okz/900/74f4DW/master_7352b7ZXwq_2135_gunung_merapi.jpg" alt="Image" class="img-fluid">
+						@endif
+						
+						@if (isset($data->slide_linggarjati))
 						<img src="{{ asset('storage/'. $data->slide_linggarjati) }}" alt="Image" class="img-fluid">
+						@else
+						<img src="https://cdn.idntimes.com/content-images/community/2021/10/165979415-454802692424765-4742859987778341157-n-07a4f29dba4b014075e472810bb49bf0-64be3022557f8c356cf768ba5eb5dcf2.jpg" alt="Image" class="img-fluid">
+						@endif
+
+						@if (isset($data->slide_linggasana))
 						<img src="{{ asset('storage/'. $data->slide_linggasana) }}" alt="Image" class="img-fluid">
+						@else
+						<img src="http://assets.kompasiana.com/items/album/2021/04/18/whatsapp-image-2021-04-18-at-20-54-13-607c3afb8ede4862a7205292.jpeg" alt="Image" class="img-fluid">
+						@endif
+
+						@if (isset($data->slide_apuy))
 						<img src="{{ asset('storage/'. $data->slide_apuy) }}" alt="Image" class="img-fluid">
+						@else
+						<img src="https://cdn.idntimes.com/content-images/post/20210722/66894905-415343555748382-9087086629507969679-n-aacf0245646b4da0dc870da72b3c0582.jpg" alt="Image" class="img-fluid">
+						@endif
+					
 					</div>
 				</div>
 			</div>
@@ -62,13 +83,22 @@
 		<div class="container">
 			<div class="row mb-5 justify-content-center">
 				<div class="col-lg-6 text-center">
-					<h2 class="section-title text-center mb-3">{{ $data->tentang_title }}</h2>
-					<p>{{ $data->tentang_body }}</p>
+						@if (isset($data->tentang_title) )	
+							<h2 class="section-title text-center mb-3">{{ $data->tentang_title }}</h2>
+							<p>{{ $data->tentang_body }}</p>
+						@else
+							<h2 class="section-title text-center mb-3">Lorem Ipsum</h2>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, maxime aspernatur? Saepe blanditiis repudiandae quidem nemo provident eveniet placeat nihil ab debitis, odio hic molestiae fugit, architecto incidunt, sit voluptate nisi quas id optio delectus laudantium unde animi. Aliquam, saepe! Sapiente dicta aut sed praesentium, possimus saepe molestiae aperiam hic magni debitis, quisquam fugit, eligendi provident rerum odit nostrum accusamus nesciunt fuga voluptatem. Nemo consectetur ipsum laudantium laboriosam praesentium. Cum assumenda deserunt omnis est modi quibusdam excepturi mollitia maiores quo hic vel debitis accusantium quis libero, eveniet totam, aspernatur sapiente voluptas! Hic accusantium pariatur odio magnam ratione, earum facere ipsa!</p>
+						@endif
 				</div>
 			</div>
 			<div class="row align-items-stretch">
 				<div class="col-lg-4 order-lg-1">
+					@if (isset($data->slide_palutungan))
 					<div class="h-100"><div class="frame h-100"><div class="feature-img-bg h-100" style="background-image: url('{{ asset('storage/'. $data->slide_palutungan) }}');"></div></div></div>
+					@else
+					<div class="h-100"><div class="frame h-100"><div class="feature-img-bg h-100" style="background-image: url('https://img.celebrities.id/okz/900/74f4DW/master_7352b7ZXwq_2135_gunung_merapi.jpg');"></div></div></div>
+					@endif
 				</div>
 
 				<div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-1" >
@@ -132,7 +162,11 @@
 							<h3>Jalur Palutungan</h3>
 							<span class="location">Kuningan</span>
 						</div>
+						@if (isset($data->slide_palutungan))
 						<img src="{{ asset('storage/'. $data->slide_palutungan) }}" alt="Image" class="img-fluid">
+						@else
+						<img src="https://img.celebrities.id/okz/900/74f4DW/master_7352b7ZXwq_2135_gunung_merapi.jpg" alt="Image" class="img-fluid">
+						@endif
 					</button>
 				</form>
 				</div>
@@ -146,7 +180,11 @@
 							<h3>Jalur Linggarjati</h3>
 							<span class="location">Kuningan</span>
 						</div>
+						@if (isset($data->slide_linggarjati))
 						<img src="{{ asset('storage/'. $data->slide_linggarjati) }}" alt="Image" class="img-fluid">
+						@else
+						<img src="https://cdn.idntimes.com/content-images/community/2021/10/165979415-454802692424765-4742859987778341157-n-07a4f29dba4b014075e472810bb49bf0-64be3022557f8c356cf768ba5eb5dcf2.jpg" alt="Image" class="img-fluid">
+						@endif
 					</button>
 				</form>
 				</div>
@@ -160,7 +198,11 @@
 							<h3>Jalur Linggasana</h3>
 							<span class="location">Kuningan</span>
 						</div>
+						@if (isset($data->slide_linggasana))
 						<img src="{{ asset('storage/'. $data->slide_linggasana) }}" alt="Image" class="img-fluid">
+						@else
+						<img src="http://assets.kompasiana.com/items/album/2021/04/18/whatsapp-image-2021-04-18-at-20-54-13-607c3afb8ede4862a7205292.jpeg" alt="Image" class="img-fluid">
+						@endif
 					</button>
 				</form>
 				</div>
@@ -175,7 +217,11 @@
 							<h3>Jalur Apuy</h3>
 							<span class="location">Majalengka</span>
 						</div>
+						@if (isset($data->slide_apuy))
 						<img src="{{ asset('storage/'. $data->slide_apuy) }}" alt="Image" class="img-fluid">
+						@else
+						<img src="https://cdn.idntimes.com/content-images/post/20210722/66894905-415343555748382-9087086629507969679-n-aacf0245646b4da0dc870da72b3c0582.jpg" alt="Image" class="img-fluid">
+						@endif
 					</button>
 				</form>
 				</div>
@@ -190,10 +236,10 @@
 				<div class="col-md-12">
 					<h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>
 					<p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, fugit?</p>
-					<p class="mb-0"><a href="{{ asset('customer/booking.html') }}" class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
+					<p class="mb-0"><a href="#" class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	@endsection
+@endsection

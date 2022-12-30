@@ -18,7 +18,7 @@
 		<div class="content-center">
 	<table border="1px">
 		<tr>
-			<td width="80px"><img src="https://i.ibb.co/m9f5fmz/tngc.png" width="80px" /></td>
+			<td width="80px"><img src="https://i.ibb.co/m9f5fmz/tngc.png" alt="logo-tngc" width="80px" /></td>
 			<td>
 				<table cellpadding="4">
 					<tr>
@@ -31,7 +31,7 @@
 					</tr>
 					<tr>
 						<td><div class="lead">Jumlah Pendaki:</div></td>
-						<td><div class="value">{{$data->jumlah_kuota}}</div></td>
+						<td><div class="value">{{$data->jumlah_pendaki}}</div></td>
 					</tr>
 					<tr>
 						<td><div class="lead">Tanggal Naik:</div></td>

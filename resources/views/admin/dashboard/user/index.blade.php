@@ -106,7 +106,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="role" class="form-label mr-3">Role :</label>
-                        <select class="form-select" aria-label="Default select example" id="role" name="role" required>
+                        <select class="form-control" aria-label="Default select example" id="role" name="role" required>
                             <option value="">Pilih Role</option>
                             <option value="Admin">Admin</option>
                             <option value="User">User</option>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="jenis_kelamin" class="form-label mr-3">Jenis Kelamin :</label>
-                        <select class="form-select" aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin" required>
+                        <select class="form-control" aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin" required>
                             <option value="">Pilih JK</option>
                             <option value="L">Laki-Laki</option>
                             <option value="P">Perempuan</option>
@@ -122,7 +122,7 @@
                     </div>
                     <div class="mb-2">
                         <label for="jenis_identitas" class="form-label mr-3">Jenis Identitas :</label>
-                        <select class="form-select" aria-label="Default select example" id="jenis_identitas" name="jenis_identitas" required>
+                        <select class="form-control" aria-label="Default select example" id="jenis_identitas" name="jenis_identitas" required>
                             <option value="">Pilih Identitas</option>
                             <option value="KTP">KTP</option>
                             <option value="SIM">SIM</option>

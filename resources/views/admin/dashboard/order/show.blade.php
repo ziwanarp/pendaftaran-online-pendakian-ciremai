@@ -9,73 +9,73 @@
     <div class="card mb-4">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Nama</b> </p>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             <p class="text-muted mb-0">{{ $order[0]->user->name }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Kode Order</b></p>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             <p class="text-muted mb-0">{{ $order[0]->kode_order }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Jalur</b></p>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             <p class="text-muted mb-0">{{ $order[0]->kuota->jalur }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Jumlah Pendaki</b></p>
           </div>
-          <div class="col-sm-9">
-            <p class="text-muted mb-0">{{ $order[0]->jumlah_kuota }}</p>
+          <div class="col-sm-7">
+            <p class="text-muted mb-0">{{ $order[0]->jumlah_pendaki }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Total Harga</b></p>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             <p class="text-muted mb-0">{{ $order[0]->harga }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Tanggal Naik</b></p>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             <p class="text-muted mb-0">{{ $order[0]->tanggal_naik }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Tanggal Turun</b></p>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             <p class="text-muted mb-0">{{ $order[0]->tanggal_turun }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Status</b></p>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-7">
             @if ($order[0]->status == 'Tolak')
             <p class="text-white mb-0 btn btn-danger">{{ $order[0]->status }}</p>
             @elseif ($order[0]->status == 'Konfirmasi')
@@ -87,19 +87,19 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-5">
               <p class="mb-0"><b>Orderan Dibuat</b></p>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-7">
               <p class="text-muted mb-0">{{ $order[0]->created_at }}</p>
             </div>
           </div>
           <hr>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-5">
             <p class="mb-0"><b>Bukti Pembayaran </b></p>
           </div>
-            <div class="col-sm-9">
+            <div class="col-sm-7">
                 <img src="{{ asset('storage/'. $order[0]->bukti_pembayaran ) }}" alt="{{ $order[0]->bukti_pembayaran }}" width="200">
                 <p class="text-muted mb-0"><a href="{{ asset('storage/'. $order[0]->bukti_pembayaran) }}" target="_blank">Lihat Foto</a></p>
               </div>

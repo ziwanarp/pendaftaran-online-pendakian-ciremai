@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminInterfaceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserOrderController;
+use App\Http\Controllers\UserProfileController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/order/confirm', [UserOrderController::class, 'orderStore']);
     Route::get('/order/myorders', [UserOrderController::class, 'myOrders']);
     Route::get('/order/struk/{request}', [UserOrderController::class, 'struk']);
+    Route::get('/order/reschedule/{order:kode_order}', [UserOrderController::class, 'getReschedule']);
+    Route::put('/order/reschedule/{order:kode_order}', [UserOrderController::class, 'reschedule']);
+    Route::resource('/user', UserProfileController::class);
 });
 
 Route::middleware('admin')->group(function () {

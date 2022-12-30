@@ -31,7 +31,7 @@ class AdminKuotaController extends Controller
                 'kuotas' => Kuota::Where('jalur', request('jalur'))->get()->groupBy('tanggal'),
                 'today' => $today,
             ]);
-        } 
+        }
 
         // jika tidak ada request, tampilkan index
         else {
@@ -75,8 +75,8 @@ class AdminKuotaController extends Controller
         $date = new DateTime();
         $today = Carbon::parse($date)->addDays(1)->format('Y-m-d');
 
-        // ambil kuota expired
-        $count = Kuota::where('tanggal', '<', $today)->get();
+        // ambil kuota expired yang belum ter-booking
+        $count = Kuota::where('tanggal', '<', $today)->where('jumlah_kuota', '>=', '100')->get();
 
         // cek apakah ada kuota expired
         if ($count->count() <= 0) {
@@ -117,7 +117,8 @@ class AdminKuotaController extends Controller
 
         Kuota::create($validatedData);
 
-        return redirect('/dashboard/kuota')->with('success', 'Kuota Barang berhasil ditambahkan');
+        Alert::success('Berhasil !', 'Data kuota berhasil di tambahkan !');
+        return redirect('/dashboard/kuota');
     }
 
     public function importKuota(Request $request)
@@ -125,7 +126,7 @@ class AdminKuotaController extends Controller
 
         $result = Excel::import(new KuotaImport, $request->file('file'));
 
-        Alert::error('Gagal !!', 'Data kuota gagal di import !');
+        Alert::success('Berhasil !!', 'Data kuota berhasil di import !');
         return redirect('/dashboard/kuota');
     }
 
@@ -136,6 +137,7 @@ class AdminKuotaController extends Controller
 
         $jalur = Kuota::where('jalur', $jalur)->where('tanggal', $tanggal)->delete();
 
+        Alert::success('Berhasil !', 'Data kuota berhasil di hapus !');
         return redirect('/dashboard/kuota');
     }
 }

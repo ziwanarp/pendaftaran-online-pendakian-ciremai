@@ -14,21 +14,29 @@ class UserHomeController extends Controller
 {
     public function index()
     {
-        // Data interface dinamis
-        $data = Interfaces::where('id', 1)->get();
-        $data = $data[0];
-
-        // booking h+1
+        //abdil data waktu hari ini, untuk booking h+1
         $date = new DateTime();
         $today = Carbon::parse($date)->addDays(1)->format('Y-m-d');
 
-
-        return view('user.index', [
-            'jalur' => Kuota::all()->groupBy('jalur'),
-            'title' => 'Home',
-            'data' => $data,
-            'today' => $today,
-        ]);
+        // abil data interface pertama
+        $data = Interfaces::where('id', 1)->get();
+        // jika $ data tidak null maka jalankan
+        if ($data != null) {
+            $data = $data[0];
+            return view('user.index', [
+                'jalur' => Kuota::all()->groupBy('jalur'),
+                'title' => 'Home',
+                'data' => $data,
+                'today' => $today,
+            ]);
+        } else {
+            // jika $data null maka jalankan
+            return view('user.index', [
+                'jalur' => Kuota::all()->groupBy('jalur'),
+                'title' => 'Home',
+                'today' => $today,
+            ]);
+        }
     }
 
     public function about()
