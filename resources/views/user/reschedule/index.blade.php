@@ -18,7 +18,7 @@
                       <p class="mb-0 text-left"><b>Jalur</b> </p>
                     </div>
                     <div class="col-lg-7 text-white">
-                      <input type="text" class="form-control" value="{{ $order->kuota->jalur }}" disabled>
+                      <input type="text" class="form-control" name="jalur" value="{{ $order->kuota->jalur }}" readonly>
                     </div>
                   </div>
                   <hr>
@@ -37,6 +37,8 @@
                     </div>
                     <div class="col-lg-7 text-white">
                       <input type="date" class="form-control" min="{{$today}}" name="tanggal_naik" required>
+                      <input type="hidden" class="form-control" value="{{ $order->jumlah_pendaki }}" name="jumlah_pendaki">
+
                     </div>
                 </div>
                 <div class=" col-lg-12 my-3 text-right">

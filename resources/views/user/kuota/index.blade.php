@@ -40,6 +40,9 @@
                 @endforeach
               </table>
           </div>
+          
+          
+
           <div class="text-left">
             <a href="/"  class="btn btn-primary" >Kembali</a>
             <a href=""  class="btn btn-danger " data-toggle="modal" data-target="#ModalCekKuota" >Cek Kuota / Bulan</a>

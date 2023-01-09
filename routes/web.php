@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminKuotaController;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminInterfaceController;
+use App\Http\Controllers\AdminReportController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\UserOrderController;
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/order', [UserOrderController::class, 'konfirmasiOrder']);
     Route::post('/order/confirm', [UserOrderController::class, 'orderStore']);
     Route::get('/order/myorders', [UserOrderController::class, 'myOrders']);
+
+    Route::get('/order/checkout/{order:kode_order}', [UserOrderController::class, 'checkout']);
+    
     Route::get('/order/struk/{request}', [UserOrderController::class, 'struk']);
     Route::get('/order/reschedule/{order:kode_order}', [UserOrderController::class, 'getReschedule']);
     Route::put('/order/reschedule/{order:kode_order}', [UserOrderController::class, 'reschedule']);
@@ -58,6 +62,7 @@ Route::middleware('admin')->group(function () {
 
     Route::resource('/dashboard/user', AdminUserController::class);
     Route::resource('/dashboard/order', AdminOrderController::class);
+    Route::resource('/dashboard/report', AdminReportController::class);
 
     Route::post('/dashboard/kuota/import', [AdminKuotaController::class, 'importKuota']);
 

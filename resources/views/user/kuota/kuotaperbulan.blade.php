@@ -41,6 +41,9 @@
                 @endforeach
               </table>
           </div>
+          {{-- <div class="d-flex justify-content-center">
+            {{ $kuota->links() }}
+          </div> --}}
           <div class="text-left">
             <a href="/"  class="btn btn-primary" >Kembali</a>
             <a href=""  class="btn btn-danger " data-toggle="modal" data-target="#ModalCekKuota" >Cek Kuota / Bulan</a>

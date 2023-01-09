@@ -95,15 +95,6 @@
             </div>
           </div>
           <hr>
-        <div class="row">
-          <div class="col-sm-5">
-            <p class="mb-0"><b>Bukti Pembayaran </b></p>
-          </div>
-            <div class="col-sm-7">
-                <img src="{{ asset('storage/'. $order[0]->bukti_pembayaran ) }}" alt="{{ $order[0]->bukti_pembayaran }}" width="200">
-                <p class="text-muted mb-0"><a href="{{ asset('storage/'. $order[0]->bukti_pembayaran) }}" target="_blank">Lihat Foto</a></p>
-              </div>
-          </div>
         </div>
     </div>
     <a href="/dashboard/order" class="btn btn-primary">Kembali</a>

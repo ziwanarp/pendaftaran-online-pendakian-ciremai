@@ -14,7 +14,7 @@ class AdminInterfaceController extends Controller
     {
         // jika ada data interface
         $data = Interfaces::where('id', 1)->get();
-        if ($data->count() > 0) {
+        if ($data === TRUE) {
             $data = $data[0];
             return view('admin.dashboard.interface.slide', [
                 'data' => $data,

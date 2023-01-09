@@ -38,6 +38,11 @@
                     <i class="fas fa-fw fa-shopping-cart"></i>
                     <span>Order</span></a>
             </li>
+            <li class="nav-item {{ Request::is('dashboard/report*') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard/report">
+                    <i class="fas fa-fw fa-file-pdf"></i>
+                    <span>Laporan</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">

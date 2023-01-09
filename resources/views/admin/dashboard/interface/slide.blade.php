@@ -25,56 +25,73 @@
             
         <tbody>
             <tr>
-                <td><img width="200px" src="{{ asset('storage/'. $data->slide_palutungan) }}" alt=""></td>
-                <td><img width="200px" src="{{ asset('storage/'.  $data->slide_linggarjati) }}" alt=""></td>
-                <td><img width="200px" src="{{ asset('storage/'.  $data->slide_linggasana) }}" alt=""></td>
-                <td><img width="200px" src="{{ asset('storage/'.  $data->slide_apuy) }}" alt=""></td>
+                @if (isset($data))
+                    <td><img width="200px" src="{{ asset('storage/'. $data->slide_palutungan) }}" alt=""></td>
+                    <td><img width="200px" src="{{ asset('storage/'.  $data->slide_linggarjati) }}" alt=""></td>
+                    <td><img width="200px" src="{{ asset('storage/'.  $data->slide_linggasana) }}" alt=""></td>
+                    <td><img width="200px" src="{{ asset('storage/'.  $data->slide_apuy) }}" alt=""></td>
+                @else
+                    <td>Tidak Tersedia</td>
+                    <td>Tidak Tersedia</td>
+                    <td>Tidak Tersedia</td>
+                    <td>Tidak Tersedia</td>
+                @endif
+                
             </tr>
         </tbody>
     </table>
-    <div class="card-body">
-        <div class="table-responsive">
-            <form action="/dashboard/interface/slide/" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="id" value="1">
-                <div class="my-3">
-                <input type="hidden" name="old_palutungan" value="{{ $data->slide_palutungan }}">
-                <label for="slide_palutungan">Ubah Slide Palutungan :</label>
-                <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_palutungan" name="slide_palutungan" onchange="previewImage()" required>
-                    <img src="" class="img-palutungan ml-3" width="200px">
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <form action="/dashboard/interface/slide/" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="1">
+                    <div class="my-3">
+                        @if (isset($data))
+                        <input type="hidden" name="old_palutungan" value="{{ $data->slide_palutungan }}">
+                        @endif
+                    <label for="slide_palutungan">Ubah Slide Palutungan :</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_palutungan" name="slide_palutungan" onchange="previewImage()" required>
+                        <img src="" class="img-palutungan ml-3" width="200px">
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        @if (isset($data))
+                        <input type="hidden" name="old_linggarjati" value="{{ $data->slide_linggarjati }}">
+                        @endif
+                    <label for="slide_linggarjati">Ubah Slide Linggarjati :</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_linggarjati" name="slide_linggarjati" onchange="previewImage2()" required>
+                        <img src="" class="img-linggarjati mt-3" width="200px">
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        @if (isset($data))
+                        <input type="hidden" name="old_linggasana" value="{{ $data->slide_linggasana }}">
+                        @endif
+                    <label for="slide_linggasana">Ubah Slide Linggasana :</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_linggasana" name="slide_linggasana" onchange="previewImage3()" required>
+                        <img src="" class="img-linggasana mt-3" width="200px">
+                    </div>
+                    <hr>
+                    <div class="mb-3">
+                        @if (isset($data))
+                        <input type="hidden" name="old_apuy" value="{{ $data->slide_apuy }}">
+                        @endif
+                    <label for="slide_apuy">Ubah Slide Apuy :</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_apuy" name="slide_apuy" onchange="previewImage4()" required>
+                        <img src="" class="img-apuy mt-3" width="200px">
+                    </div>
+                    <hr>
+                    <div class="my-3">
+                        <button type="submit" class="btn btn-primary btn-icon-split"><span class="icon text-white-50">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span class="text">Save</span>
+                        </button>
                 </div>
-                <hr>
-                <div class="mb-3">
-                    <input type="hidden" name="old_linggarjati" value="{{ $data->slide_linggarjati }}">
-                <label for="slide_linggarjati">Ubah Slide Linggarjati :</label>
-                <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_linggarjati" name="slide_linggarjati" onchange="previewImage2()" required>
-                    <img src="" class="img-linggarjati mt-3" width="200px">
-                </div>
-                <hr>
-                <div class="mb-3">
-                    <input type="hidden" name="old_linggasana" value="{{ $data->slide_linggasana }}">
-                <label for="slide_linggasana">Ubah Slide Linggasana :</label>
-                <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_linggasana" name="slide_linggasana" onchange="previewImage3()" required>
-                    <img src="" class="img-linggasana mt-3" width="200px">
-                </div>
-                <hr>
-                <div class="mb-3">
-                    <input type="hidden" name="old_apuy" value="{{ $data->slide_apuy }}">
-                <label for="slide_apuy">Ubah Slide Apuy :</label>
-                <input type="file" accept="image/png, image/jpeg, image/jpg" id="slide_apuy" name="slide_apuy" onchange="previewImage4()" required>
-                    <img src="" class="img-apuy mt-3" width="200px">
-                </div>
-                <hr>
-                <div class="my-3">
-                    <button type="submit" class="btn btn-primary btn-icon-split"><span class="icon text-white-50">
-                        <i class="fas fa-save"></i>
-                    </span>
-                    <span class="text">Save</span>
-                    </button>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
 </div>
 
 <script>

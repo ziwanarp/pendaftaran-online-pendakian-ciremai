@@ -24,7 +24,6 @@
                             <th>Jalur</th>
                             <th>Tanggal Naik</th>
                             <th>Harga</th>
-                            <th>Bukti Pembayaran</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -38,7 +37,6 @@
                             <td>{{ $item->kuota->jalur }}</td>
                             <td>{{ $item->tanggal_naik }}</td>
                             <td>Rp.{{ number_format($item->harga, 0, ".", ".") }}</td>
-                            <td><a href="{{ asset('storage/'.$item->bukti_pembayaran) }}" target="blank">Lihat Foto</a></td>
                             @if ($item->status == 'Konfirmasi')
                             <td><p class="btn btn-success">{{ $item->status }}</p></td>
                             @elseif ($item->status == 'Tolak')

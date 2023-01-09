@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('tanggal_naik');
             $table->string('tanggal_turun');
             $table->enum('status', ['Pending', 'Konfirmasi','Tolak']);
-            $table->string('bukti_pembayaran');
+            $table->integer('reschedule')->default(0);
+            $table->integer('jumlah_pendaki');
             $table->timestamps();
         });
     }
