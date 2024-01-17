@@ -178,15 +178,15 @@ class UserOrderController extends Controller
     public function callback(Request $request)
     {
         $serverKey = config('midtrans.server_key');
-        $hashed = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
-        if ($hashed == $request->signature_key) {
-            if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
-                $order = Order::where('kode_order', $request->order_id)->get();
+        $hashed = hash('sha512', $request->body['order_id'] . $request->body['status_code'] . $request->body['gross_amount'] . $serverKey);
+        if ($hashed == $request->body['signature_key']) {
+            if ($request->body['transaction_status'] == 'capture' || $request->body['transaction_status'] == 'settlement') {
+                $order = Order::where('kode_order', $request->body['order_id'])->get();
                 $order = $order[0];
                 $order->update(['status' => 'Konfirmasi']);
             }
-            if ($request->transaction_status == 'deny' || $request->transaction_status == 'expire') {
-                $order = Order::where('kode_order', $request->order_id)->get();
+            if ($request->body['transaction_status'] == 'deny' || $request->body['transaction_status'] == 'expire') {
+                $order = Order::where('kode_order', $request->body['order_id'])->get();
                 $order = $order[0];
                 $order->update(['status' => 'Tolak']);
             }
