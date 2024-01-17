@@ -20,9 +20,8 @@ class UserHomeController extends Controller
 
         // abil data interface pertama
         $data = Interfaces::where('id', 1)->get();
-
         // jika $ data tidak null maka jalankan
-        if ($data === TRUE) {
+        if (count($data) > 0) {
             $data = $data[0];
             return view('user.index', [
                 'jalur' => Kuota::all()->groupBy('jalur'),
