@@ -32,5 +32,19 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
 
         ]);
+
+        \App\Models\Interfaces::factory()->create([
+            'slide_palutungan' => 'default seeder update in admin setting',
+            'slide_linggarjati' => 'default seeder update in admin setting',
+            'slide_linggasana' => 'default seeder update in admin setting',
+            'slide_apuy' => 'default seeder update in admin setting',
+            'tentang_title' => 'default seeder update in admin setting',
+            'tentang_body' => 'default seeder update in admin setting',
+            'jalur_palutungan' => 'default seeder update in admin setting',
+            'jalur_linggarjati' => 'default seeder update in admin setting',
+            'jalur_apuy' => 'default seeder update in admin setting',
+            'jalur_linggasana' => 'default seeder update in admin setting',
+
+        ]);
     }
 }
