@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>Pendakian - {{ $page }}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@
                     <!-- Topbar Search -->
                     
                         <div class="mt-2 ml-4 text-color-black">
-                            <h4>Selamat Datang {{ auth()->user()->name }} !!!</h4>
+                            <h4>Halaman {{ $page }}</h4>
                         </div>
                     
 

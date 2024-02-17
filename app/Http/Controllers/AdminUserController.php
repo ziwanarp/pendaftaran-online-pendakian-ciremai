@@ -18,6 +18,7 @@ class AdminUserController extends Controller
     {
         return view('admin.dashboard.user.index', [
             'users' => User::all(),
+            'page' => 'User Management',
         ]);
     }
 
@@ -76,6 +77,7 @@ class AdminUserController extends Controller
     {
         return view('admin.dashboard.user.show', [
             'user' => $user,
+            'page' => 'Show User',
         ]);
     }
 
@@ -89,6 +91,7 @@ class AdminUserController extends Controller
     {
         return view('admin.dashboard.user.edit', [
             'user' => $user,
+            'page' => 'Edit User',
         ]);
     }
 

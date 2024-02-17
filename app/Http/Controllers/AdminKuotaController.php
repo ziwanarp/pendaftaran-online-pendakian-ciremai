@@ -30,13 +30,15 @@ class AdminKuotaController extends Controller
                 'title' => 'Detail Penjualan Barang',
                 'kuotas' => Kuota::Where('jalur', request('jalur'))->get()->groupBy('tanggal'),
                 'today' => $today,
+                'page' => 'Kuota',
             ]);
         }
 
         // jika tidak ada request, tampilkan index
         else {
             return view('admin.dashboard.kuota.index', [
-                'kuotas' => Kuota::all()->groupBy('jalur')
+                'kuotas' => Kuota::all()->groupBy('jalur'),
+                'page' => 'Kuota',
             ]);
         }
     }

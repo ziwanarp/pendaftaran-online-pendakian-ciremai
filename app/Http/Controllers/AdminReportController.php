@@ -14,7 +14,7 @@ class AdminReportController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.report.index', []);
+        return view('admin.dashboard.report.index', ['page' => 'Report',]);
     }
 
     /**
