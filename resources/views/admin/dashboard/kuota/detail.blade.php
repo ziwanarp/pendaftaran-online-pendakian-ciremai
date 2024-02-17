@@ -143,6 +143,9 @@
                         <label for="nama" class="form-label">Masukan File (.csv / .xlsx / .xls)</label>
                         <input type="file" class="form-control" id="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required> 
                     </div>
+                    <div>
+                        <a href="{{ asset("template/template_import_kuota.xlsx") }}" class="btn btn-sm btn-success">Download Template Excel</a>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

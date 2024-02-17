@@ -123,8 +123,8 @@ class AdminKuotaController extends Controller
 
     public function importKuota(Request $request)
     {
-
-        $result = Excel::import(new KuotaImport, $request->file('file'));
+        $import = new KuotaImport();
+        Excel::import($import, $request->file('file')); 
 
         Alert::success('Berhasil !!', 'Data kuota berhasil di import !');
         return redirect('/dashboard/kuota');

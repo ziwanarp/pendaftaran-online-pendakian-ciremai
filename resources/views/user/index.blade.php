@@ -18,10 +18,15 @@
 										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
 											<label for="jalur"><strong>Jalur Pendakian :</strong></label>
 											<select name="jalur" id="jalur" class="form-control custom-select" required>
+												@if (isset($jalur) && count($jalur) > 0)
 												<option value="">Pilih Jalur</option>
 												@foreach ($jalur as $j)
-												<option value="{{ $j->first()->jalur }}">{{ $j->first()->jalur }}</option>
-												@endforeach
+													<option value="{{ $j->first()->jalur }}">{{ $j->first()->jalur }}</option>
+													@endforeach
+												@else
+												<option value="" selected>TIDAK TERSEDIA</option>
+												@endif
+
 											</select>
 										</div>
 										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
