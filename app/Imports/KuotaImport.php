@@ -14,12 +14,18 @@ class KuotaImport implements ToModel
      */
     public function model(array $row)
     {
+        $date = explode('-',$row[2]);
+        $tahun = $date[2];
+        $bulan = $date[1];
+        $tanggal = $date[2]."-".$date[1]."-".$date[0];
+
         return new Kuota([
             'jalur'     => $row[0],
             'jumlah_kuota'  => $row[1],
-            'tanggal' => $row[2],
-            'bulan' => $row[3],
-            'tahun' => $row[4],
-        ]);
+            'tanggal' => $tanggal,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+        ]);     
     }
+
 }
