@@ -18,6 +18,7 @@ class AdminInterfaceController extends Controller
             $data = $data[0];
             return view('admin.dashboard.interface.slide', [
                 'data' => $data,
+                'page' => 'Interface',
             ]);
         }
         //jika tidak ada data
@@ -73,6 +74,7 @@ class AdminInterfaceController extends Controller
             $data = $data[0];
             return view('admin.dashboard.interface.about', [
                 'data' => $data,
+                'page' => 'About',
             ]);
         }
         // jika data interface tidak ada

@@ -119,18 +119,22 @@
         onSuccess: function(result){
           /* You may add your own implementation here */
           alert("payment success!"); console.log(result);
+          window.location.href = '{{ url("/order/myorders") }}';
         },
         onPending: function(result){
           /* You may add your own implementation here */
           alert("wating your payment!"); console.log(result);
+          window.location.href = '{{ url("/order/myorders") }}';
         },
         onError: function(result){
           /* You may add your own implementation here */
           alert("payment failed!"); console.log(result);
+          window.location.href = '{{ url("/order/myorders") }}';
         },
         onClose: function(){
           /* You may add your own implementation here */
           alert('you closed the popup without finishing the payment');
+          window.location.href = '{{ url("/order/myorders") }}';
         }
       })
     });

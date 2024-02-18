@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>Pendakian - {{ $page }}</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@
                     <!-- Topbar Search -->
                     
                         <div class="mt-2 ml-4 text-color-black">
-                            <h4>Selamat Datang {{ auth()->user()->name }} !!!</h4>
+                            <h4>Halaman {{ $page }}</h4>
                         </div>
                     
 
@@ -96,11 +96,16 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
+                                {{-- {{ dd(Request::is()); }} --}}
+                                @if ( Request::is('dashboard/user*'))
+                                @else
+                                    <a class="dropdown-item" href="user/{{ auth()->user()->username }}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>  
+                                @endif
+
                                 <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout

@@ -21,6 +21,7 @@ class AdminDashboardController extends Controller
             'kuotas' => Kuota::all()->groupBy('jalur'),
             'users' => User::all(),
             'orders' => Order::where('status', 'Pending')->get(),
+            'page' => 'Dashboard',
         ]);
     }
 

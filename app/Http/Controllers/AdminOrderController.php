@@ -36,6 +36,7 @@ class AdminOrderController extends Controller
                 return view('admin.dashboard.order.show', [
                     'title' => 'Detail Order',
                     'order' => $order,
+                    'page' => 'Detail Order',
                 ]);
             }
         }
@@ -43,6 +44,7 @@ class AdminOrderController extends Controller
         return view('admin.dashboard.order.index', [
             'title' => 'Order',
             'orders' => Order::all(),
+            'page' => 'Order',
 
         ]);
     }
