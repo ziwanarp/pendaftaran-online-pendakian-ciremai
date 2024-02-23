@@ -5,11 +5,20 @@
     	<meta name="google" value="notranslate">
     	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>Struk Prmbayaran</title>
-<head>
+
 	<style>
 		table {
 		width: 100%;
 		}
+		.qr-code-container {
+            display: flex;
+            justify-content: center;
+        }
+        .qr-code-container img {
+            max-width: 500px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+            height: auto;
+            width: auto\9; /* Untuk mendukung IE8 */
+        }
 	</style>
 </head>
 <body>
@@ -54,6 +63,8 @@
 			</td>
 		</tr>
 	</table>
+	<br>
+        <img class="qr-code-container" src="data:image/png;base64,{{ $qrCode }}" alt="qrCode">
 	<p>*Struk pembayaran ini diperlihatkan ke petugas pos pendakian sesuai dengan jalur untuk konfirmasi </p>
 </div>
 </div>
