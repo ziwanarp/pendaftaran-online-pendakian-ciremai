@@ -9,7 +9,9 @@ use App\Models\Order;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 define('HARGA', '50000');
 
@@ -126,11 +128,23 @@ class UserOrderController extends Controller
 
     public function struk($request)
     {
+        // check paakah data yang di request ada atau tidak
         $data = Order::where('kode_order', $request)->get();
         $data = $data[0];
-        // return view('user.strukpembayaran.index', ['data' => $data]);
-        $pdf = Pdf::loadView('user.strukpembayaran.index', ['data' => $data]);
-        return $pdf->download('Struk_' . $request . '.pdf');
+
+        // buatkan qr code lalu simpan di local dir
+        $qrCode = QrCode::format('png')->generate($data->kode_order);
+        $imagePath = 'qrcodes/' . $data->kode_order.'.png';
+        Storage::disk('public')->put($imagePath, $qrCode);
+
+        // ambil qr code lalu convert ke base 64
+        $qrCodeContents = Storage::disk('public')->get($imagePath);
+        $base64Image = base64_encode($qrCodeContents);
+
+        // return view('user.strukpembayaran.index', ['data' => $data,'qrCode' => $base64Image]);
+        $pdf = Pdf::loadView('user.strukpembayaran.index', ['data' => $data,'qrCode' => $base64Image ]);
+        
+        return $pdf->download('Struk_' . $data->kode_order . '.pdf');
     }
 
     public function getReschedule(Order $order)
