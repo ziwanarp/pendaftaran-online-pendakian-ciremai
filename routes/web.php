@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminCheckinController;
+use App\Http\Controllers\AdminCheckoutController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminKuotaController;
 use App\Http\Controllers\AdminOrderController;
@@ -60,6 +62,8 @@ Route::middleware('admin')->group(function () {
     Route::post('/dashboard/kuota/hapus/{request}', [AdminKuotaController::class, 'hapusPerJalur']);
     Route::get('/dashboard/kuota/hapusExpired', [AdminKuotaController::class, 'kuotaExpired']);
 
+    Route::resource('/dashboard/checkin', AdminCheckinController::class);
+    Route::resource('/dashboard/checkout', AdminCheckoutController::class);
     Route::resource('/dashboard/user', AdminUserController::class);
     Route::resource('/dashboard/order', AdminOrderController::class);
     Route::resource('/dashboard/report', AdminReportController::class);
