@@ -5,14 +5,17 @@ namespace App\Http\Helpers;
 use App\Models\Order;
 
 trait Helpers {
-    protected function cekStatusPembayaran($kode_booking) : bool
-    {
-        $order = Order::where('kode_booking',$kode_booking)->get();
-        if($order[0]->status == "konfirmasi"){
-            return true;
-        } else {
-            return false;
-        }
+    
+    protected function getOrderByKodeOrder($kode_order) : object{
+        return Order::where('kode_order',$kode_order)->get();
+    }
+
+    protected function getOrderByUserId($userId) : object{
+        return Order::where('user_id', $userId)->get();
+    }
+
+    protected function getOrderByCheckin() : object{
+        return Order::where('checkin',1)->get();
     }
 
 }

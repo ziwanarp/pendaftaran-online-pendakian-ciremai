@@ -16,7 +16,7 @@ class AdminCheckinController extends Controller
 
     public function index()
     {
-        $order = Order::where('checkin',1)->get();
+        $order = $this->getOrderByCheckin();
         if(count($order) > 0){
             return view('admin.dashboard.checkin.index',['page' => 'Check In','data'=> $order]);
         } else{
@@ -49,7 +49,8 @@ class AdminCheckinController extends Controller
             return back();
         }
 
-        $order = Order::where('kode_order', $request->kode_order)->get();
+        // $order = Order::where('kode_order', $request->kode_order)->get();
+        $order = $this->getOrderByKodeOrder($request->kode_order);
         if(count($order) > 0){
             if($order[0]->checkin == 1){
                 Alert::error('Kode order sudah pernah checkin !');
