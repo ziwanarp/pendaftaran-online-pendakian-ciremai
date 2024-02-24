@@ -23,6 +23,16 @@
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>
             </li>
+            <li class="nav-item {{ Request::is('dashboard/checkin*') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard/checkin">
+                    <i class="fas fa-fw fa-check-square"></i>
+                    <span>Check In</span></a>
+            </li>
+            <li class="nav-item {{ Request::is('dashboard/checkout*') ? 'active' : '' }}">
+                <a class="nav-link" href="/dashboard/checkout">
+                    <i class="fas fa-fw fa-times-circle"></i>
+                    <span>Check Out</span></a>
+            </li>
             <li class="nav-item {{ Request::is('dashboard/kuota*') ? 'active' : '' }}">
                 <a class="nav-link" href="/dashboard/kuota">
                     <i class="fas fa-fw fa-calendar-alt"></i>

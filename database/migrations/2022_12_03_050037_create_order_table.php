@@ -23,6 +23,10 @@ return new class extends Migration
             $table->string('tanggal_turun');
             $table->enum('status', ['Pending', 'Konfirmasi','Tolak']);
             $table->integer('reschedule')->default(0);
+            $table->integer('checkin')->default(0);
+            $table->integer('checkout')->default(0);
+            $table->timestamp('checkin_time')->nullable();
+            $table->timestamp('checkout_time')->nullable();
             $table->integer('jumlah_pendaki');
             $table->timestamps();
         });

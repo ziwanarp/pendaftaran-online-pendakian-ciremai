@@ -76,15 +76,50 @@
             <p class="mb-0"><b>Status</b></p>
           </div>
           <div class="col-sm-7">
-            @if ($order[0]->status == 'Tolak')
-            <p class="text-white mb-0 btn btn-danger">{{ $order[0]->status }}</p>
-            @elseif ($order[0]->status == 'Konfirmasi')
-            <p class="text-white mb-0 btn btn-success">{{ $order[0]->status }}</p>
-            @else
-            <p class="text-white mb-0 btn btn-warning">{{ $order[0]->status }}</p>
-            @endif
+
+          @if ($order[0]->checkin_time != null && $order[0]->checkout_time == null)
+            <p class="text-white mb-0 btn btn-success">Checked In</p>
+          @elseif ($order[0]->checkin_time != null && $order[0]->checkout_time != null)
+            <p class="text-white mb-0 btn btn-danger">Checked Out</p>
+          @else
+              @if ($order[0]->status == 'Tolak')
+              <p class="text-white mb-0 btn btn-danger">{{ $order[0]->status }}</p>
+              @elseif ($order[0]->status == 'Konfirmasi')
+              <p class="text-white mb-0 btn btn-success">{{ $order[0]->status }}</p>
+              @else
+              <p class="text-white mb-0 btn btn-warning">{{ $order[0]->status }}</p>
+              @endif
+          @endif
+
+
           </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-5">
+              <p class="mb-0"><b>Waktu Checkin</b></p>
+            </div>
+            <div class="col-sm-7">
+              @if ($order[0]->checkin_time != null)
+                <p class="text-muted mb-0">{{$order[0]->checkin_time}}</p>
+              @else
+                <p class="text-muted mb-0">-</p>
+              @endif
+            </div>
+          </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-5">
+              <p class="mb-0"><b>Waktu Checkout</b></p>
+            </div>
+            <div class="col-sm-7">
+              @if ($order[0]->checkout_time != null)
+                <p class="text-muted mb-0">{{$order[0]->checkout_time}}</p>
+              @else
+                <p class="text-muted mb-0">-</p>
+              @endif
+            </div>
+          </div>
         <hr>
         <div class="row">
             <div class="col-sm-5">

@@ -35,12 +35,44 @@
                       <p class="mb-0 text-left"><b>Status</b> </p>
                     </div>
                     <div class="col-lg-7 text-white">
-                      @if ($order[0]->status == 'Konfirmasi')
-                      <p class="btn-success btn-sm form-control border-0">{{ $order[0]->status }}</p>
-                      @elseif ($order[0]->status == 'Tolak')
-                      <p class="btn-danger btn-sm form-control border-0">{{ $order[0]->status }}</p>
+                      @if ($order[0]->checkin_time != null && $order[0]->checkout_time == null)
+                        <p class="btn-success btn-sm form-control border-0">Checked In</p>
+                      @elseif ($order[0]->checkin_time != null && $order[0]->checkout_time != null)
+                        <p class="btn-danger btn-sm form-control border-0">Checked Out</p>
                       @else
-                      <p class="btn-warning btn-sm form-control border-0">{{ $order[0]->status }}</p>
+                        @if ($order[0]->status == 'Konfirmasi')
+                        <p class="btn-success btn-sm form-control border-0">{{ $order[0]->status }}</p>
+                        @elseif ($order[0]->status == 'Tolak')
+                        <p class="btn-danger btn-sm form-control border-0">{{ $order[0]->status }}</p>
+                        @else
+                        <p class="btn-warning btn-sm form-control border-0">{{ $order[0]->status }}</p>
+                        @endif
+                      @endif
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row align-items-center text-white">
+                    <div class="col-lg-5">
+                      <p class="mb-0 text-left"><b>Waktu Checkin</b> </p>
+                    </div>
+                    <div class="col-lg-7 text-white">
+                      @if ($order[0]->checkin_time != null)
+                        <input type="text" name="checkin_time" class="form-control" value="{{ $order[0]->checkin_time }}" readonly>
+                      @else
+                        <input type="text" name="checkin_time" class="form-control" value="-" readonly>
+                      @endif
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row align-items-center text-white">
+                    <div class="col-lg-5">
+                      <p class="mb-0 text-left"><b>Checkout Time</b> </p>
+                    </div>
+                    <div class="col-lg-7 text-white">
+                      @if ($order[0]->checkout_time != null)
+                        <input type="text" name="checkout_time" class="form-control" value="{{ $order[0]->checkout_time }}" readonly>
+                      @else
+                        <input type="text" name="checkout_time" class="form-control" value="-" readonly>
                       @endif
                     </div>
                   </div>

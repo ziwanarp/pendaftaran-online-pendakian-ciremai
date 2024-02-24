@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\Helpers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminOrderController extends Controller
 {
+    use Helpers;
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +34,7 @@ class AdminOrderController extends Controller
 
                 // Detail order via request
             } elseif (request()->kode_order != null) {
-                $order = Order::where('kode_order', request()->kode_order)->get();
+                $order = $this->getOrderByKodeOrder(request()->kode_order);
                 return view('admin.dashboard.order.show', [
                     'title' => 'Detail Order',
                     'order' => $order,

@@ -37,18 +37,24 @@
                             <td>{{ $item->kuota->jalur }}</td>
                             <td>{{ $item->tanggal_naik }}</td>
                             <td>Rp.{{ number_format($item->harga, 0, ".", ".") }}</td>
-                            @if ($item->status == 'Konfirmasi')
-                            <td><p class="btn btn-success">{{ $item->status }}</p></td>
-                            @elseif ($item->status == 'Tolak')
-                            <td><p class="btn btn-danger">{{ $item->status }}</p></td>
+                            @if ($item->checkin == 1 && $item->checkout == null)
+                                <td><p class="btn btn-success">Checked In</p></td>
+                            @elseif ($item->checkin == 1 && $item->checkout == 1)
+                                <td><p class="btn btn-danger">Checked Out</p></td>
                             @else
-                            <td>
-                                <a href="?confirm={{ $item->id }}" class=" mx-2 btn btn-success btn-circle">
-                                <i class="fas fa-check-circle"></i>
-                                <a href="?tolak={{ $item->id }}" class="btn btn-danger btn-circle">
-                                <i class="fas fa-times-circle"></i>
-                            </td>
-                            @endif 
+                                @if ($item->status == 'Konfirmasi')
+                                    <td><p class="btn btn-success">{{ $item->status }}</p></td>
+                                @elseif ($item->status == 'Tolak')
+                                    <td><p class="btn btn-danger">{{ $item->status }}</p></td>
+                                @else
+                                    <td>
+                                        <a href="?confirm={{ $item->id }}" class=" mx-2 btn btn-success btn-circle">
+                                        <i class="fas fa-check-circle"></i>
+                                        <a href="?tolak={{ $item->id }}" class="btn btn-danger btn-circle">
+                                        <i class="fas fa-times-circle"></i>
+                                    </td>
+                                @endif 
+                            @endif
                         </tr>
                     </tbody>
                     @endforeach

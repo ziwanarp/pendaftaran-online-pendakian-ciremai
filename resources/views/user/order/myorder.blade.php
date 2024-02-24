@@ -7,7 +7,7 @@
     <div class="hero hero-inner">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-10 mx-auto text-center">
+        <div class="col-lg-12 mx-auto text-center">
           <div class="intro-wrap">
             <h2 class="mb-3 text-white">My Orders</h2>
 
@@ -17,6 +17,7 @@
                                 <th>No</th>
                                 <th>Kode Order</th>
                                 <th>Status</th>
+                                <th>Status Waktu</th>
                                 <th>Jalur</th>
                                 <th>Tanggal Naik</th>
                                 <th>Reschedule</th>
@@ -30,16 +31,33 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td><a class="btn-primary btn-sm" href="?order={{ $order->kode_order }}">{{ $order->kode_order }}</a></td>
-                                    @if ($order->status == 'Konfirmasi')
-                                    <td><p class="btn-success btn-sm">{{ $order->status }}</p></td>
-                                    @elseif ($order->status == 'Tolak')
-                                    <td><p class="btn-danger btn-sm">{{ $order->status }}</p></td>
+
+                                    @if ($order->checkin_time != null && $order->checkout_time == null)
+                                      <td><p class="btn-success btn-sm">Checked In</p></td>
+                                    @elseif ($order->checkin_time != null && $order->checkout_time != null)
+                                      <td><p class="btn-danger btn-sm">Checked Out</p></td>
                                     @else
-                                    <td><p class="btn-warning btn-sm">{{ $order->status }}</p></td>
+                                      @if ($order->status == 'Konfirmasi')
+                                      <td><p class="btn-success btn-sm">{{ $order->status }}</p></td>
+                                      @elseif ($order->status == 'Tolak')
+                                      <td><p class="btn-danger btn-sm">{{ $order->status }}</p></td>
+                                      @else
+                                      <td><p class="btn-warning btn-sm">{{ $order->status }}</p></td>
+                                      @endif
                                     @endif
+
+                                    @if ($order->checkin_time != null && $order->checkout_time != null )
+                                      <td><small>In :{{ $order->checkin_time }} <br> Out :{{ $order->checkout_time }} </small></td>
+                                    @elseif ($order->checkin_time != null && $order->checkout_time == null)
+                                      <td><small>In :{{ $order->checkin_time }} <br> Out : - </small></td>
+                                    @else
+                                      <td><small>In : - <br> Out : - </small></td>
+                                    @endif
+                                    
+                                    
                                     <td>{{ $order->kuota->jalur }}</td>
                                     <td>{{ $order->tanggal_naik  }}</td>
-                                    @if ($order->status == 'Konfirmasi' & $order->tanggal_naik >= $today & $order->reschedule == 0)  
+                                    @if ($order->status == 'Konfirmasi' & $order->tanggal_naik >= $today & $order->reschedule == 0 & $order->checkin == 0)  
                                       <td>
                                       <a class="text-white btn-success btn-sm border-0" href="/order/reschedule/{{ $order->kode_order }}" >Reschedule <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                                         <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>

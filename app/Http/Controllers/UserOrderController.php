@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\Helpers;
 use DateTime;
 use Carbon\Carbon;
 use App\Models\Kuota;
@@ -17,6 +18,7 @@ define('HARGA', '50000');
 
 class UserOrderController extends Controller
 {
+    use Helpers;
     public function order()
     {
 
@@ -111,13 +113,13 @@ class UserOrderController extends Controller
         $date = new DateTime();
         $today = Carbon::parse($date)->addDays(1)->format('Y-m-d');
         if (request()->order != null) {
-            $order = Order::where('kode_order', request()->order)->get();
+            $order = $this->getOrderByKodeOrder(request()->order);
             return view('user.order.detail', [
                 'title' => 'Detail Order',
                 'order' => $order,
             ]);
         } else {
-            $order = Order::where('user_id', auth()->user()->id)->get();
+            $order = $this->getOrderByUserId(auth()->user()->id);
             return view('user.order.myorder', [
                 'title' => 'My Orders',
                 'orders' => $order,
@@ -129,7 +131,7 @@ class UserOrderController extends Controller
     public function struk($request)
     {
         // check paakah data yang di request ada atau tidak
-        $data = Order::where('kode_order', $request)->get();
+        $data = $this->getOrderByKodeOrder($request);
         $data = $data[0];
 
         // buatkan qr code lalu simpan di local dir
@@ -194,14 +196,14 @@ class UserOrderController extends Controller
         $hashed = hash('sha512', $request->order_id. $request->status_code. $request->gross_amount.$serverKey);
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
-                $order = Order::where('kode_order', $request->order_id)->get();
+                $order = $this->getOrderByKodeOrder($request->order_id);
                 $order = $order[0];
                 $order->update(['status' => 'Konfirmasi']);
 
                 return json_encode(["status_code" => 200, "message" => "success"]);
             }
             if ($request->transaction_status == 'deny' || $request->transaction_status == 'expire') {
-                $order = Order::where('kode_order', $request->body['order_id'])->get();
+                $order = $this->getOrderByKodeOrder($request->body['order_id']);
                 $order = $order[0];
                 $order->update(['status' => 'Tolak']);
 
