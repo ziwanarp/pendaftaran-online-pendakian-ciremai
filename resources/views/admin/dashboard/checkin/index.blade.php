@@ -59,41 +59,43 @@
                       </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Kode Order</th>
-                                        <th>Jalur</th>
-                                        <th>Waktu Checkin</th>
-                                        <th>Harga</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                @foreach ($data as $item)
-                                    
-                                <tbody>
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        <td><a href="order?kode_order={{ $item->kode_order }}">{{ $item->kode_order }}</a></td>
-                                        <td>{{ $item->kuota->jalur }}</td>
-                                        <td>{{ $item->checkin_time }} <br><small>({{\Carbon\Carbon::parse($item->checkin_time)->diffForHumans()}})</small></td>
-                                        <td>Rp.{{ number_format($item->harga, 0, ".", ".") }}</td>
-                                        @if ($item->checkin == 1)
-                                        <td><p class="badge bg-success text-white">Checked In</p></td>
-                                        @endif 
-                                    </tr>
-                                </tbody>
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                @if ($data != null)
+                  <div class="col-lg-12">
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                          <th>No</th>
+                                          <th>Nama</th>
+                                          <th>Kode Order</th>
+                                          <th>Jalur</th>
+                                          <th>Waktu Checkin</th>
+                                          <th>Harga</th>
+                                          <th>Status</th>
+                                      </tr>
+                                  </thead>
+                                  @foreach ($data as $item)
+                                      
+                                  <tbody>
+                                      <tr>
+                                          <td>{{ $loop->iteration }}</td>
+                                          <td>{{ $item->user->name }}</td>
+                                          <td><a href="order?kode_order={{ $item->kode_order }}">{{ $item->kode_order }}</a></td>
+                                          <td>{{ $item->kuota->jalur }}</td>
+                                          <td>{{ $item->checkin_time }} <br><small>({{\Carbon\Carbon::parse($item->checkin_time)->diffForHumans()}})</small></td>
+                                          <td>Rp.{{ number_format($item->harga, 0, ".", ".") }}</td>
+                                          @if ($item->checkin == 1)
+                                          <td><p class="badge bg-success text-white">Checked In</p></td>
+                                          @endif 
+                                      </tr>
+                                  </tbody>
+                                  @endforeach
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                @endif
             </div>
         </div>
 

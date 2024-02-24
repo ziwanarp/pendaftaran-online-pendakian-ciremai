@@ -18,4 +18,8 @@ trait Helpers {
         return Order::where('checkin',1)->get();
     }
 
+    protected function getOrderByCheckout() : object{
+        return Order::where('checkout',1)->get();
+    }
+
 }
