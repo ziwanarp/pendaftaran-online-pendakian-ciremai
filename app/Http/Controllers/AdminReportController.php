@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminReportController extends Controller
 {
@@ -14,7 +16,17 @@ class AdminReportController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.report.index', ['page' => 'Report',]);
+        $request = request();
+
+        if($request->search == true){
+            if($request->hari != null){
+                $hari = " WHERE id = ";
+            }
+        }
+
+        $user = DB::select('SELECT * FROM users');
+        dd($user);
+        return view('admin.dashboard.report.index', ['page' => 'Report', 'data' => null, 'user' => $user]);
     }
 
     /**
