@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminReportController extends Controller
 {
@@ -14,7 +16,38 @@ class AdminReportController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.report.index', ['page' => 'Report',]);
+        $query= "";
+        $filterBy ="";
+        $listUser = DB::select('SELECT * FROM users WHERE username NOT IN("admin")');
+        $request = request();
+
+        if($request->search == true){
+            if($request->hari != null){
+                $filterBy .= " Hari ".$request->hari.",";
+                $query .= " AND DAY(created_at) = ".$request->hari;
+            }
+            if($request->bulan != null){
+                $filterBy .= " Bulan ".$request->bulan.",";
+                $query .= " AND MONTH(created_at) = ".$request->bulan;
+            }
+            if($request->tahun != null){
+                $filterBy .= " Tahun ".$request->tahun.",";
+                $query .= " AND YEAR(created_at) = ".$request->tahun;
+            }
+            if($request->userId != null){
+                $filterBy .= " User ".$request->userId.",";
+                $query .= " AND user_id = ".$request->userId;
+            }
+
+            $result = DB::select('SELECT * FROM orders WHERE 1 = 1 '.$query);
+            $data = Order::hydrate($result);
+        } else {
+            $filterBy = "null";
+            $data = [];
+        }
+
+        // dd($user);
+        return view('admin.dashboard.report.index', ['page' => 'Report', 'data' => $data, 'user' => $listUser, 'filterBy' => $filterBy]);
     }
 
     /**
