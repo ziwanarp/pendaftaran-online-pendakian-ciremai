@@ -28,6 +28,7 @@ return new class extends Migration
             $table->timestamp('checkin_time')->nullable();
             $table->timestamp('checkout_time')->nullable();
             $table->integer('jumlah_pendaki');
+            $table->string('snapToken')->nullable();
             $table->timestamps();
         });
     }
