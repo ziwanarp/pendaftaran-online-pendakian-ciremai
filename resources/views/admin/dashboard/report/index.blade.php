@@ -75,7 +75,8 @@
                 </div>
                 
                 </div>
-                    @if ($data != null)
+                    <h6 class="text-left">Filter By: {{ $filterBy }}</h6>
+                    @if (count($data) > 0)
                         <div class="col-lg-12">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -85,28 +86,25 @@
                                                 <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Kode Order</th>
-                                                <th>Jalur</th>
-                                                <th>Waktu Checkout</th>
+                                                <th>Pesanan Dibuat</th>
                                                 <th>Harga</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
-                                        @foreach ($data as $item)
-                                            
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->user->name }}</td>
-                                                <td><a href="order?kode_order={{ $item->kode_order }}">{{ $item->kode_order }}</a></td>
-                                                <td>{{ $item->kuota->jalur }}</td>
-                                                <td>{{ $item->checkout_time }} <br><small>({{\Carbon\Carbon::parse($item->checkout_time)->diffForHumans()}})</small></td>
-                                                <td>Rp.{{ number_format($item->harga, 0, ".", ".") }}</td>
-                                                @if ($item->checkout == 1)
-                                                <td><p class="badge bg-success text-white">Checked Out</p></td>
-                                                @endif 
-                                            </tr>
-                                        </tbody>
-                                        @endforeach
+                                        @forelse ( $data as $item )
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->user->name }}</td>
+                                                    <td>{{ $item->kode_order }}</a></td>
+                                                    <td>{{ $item->created_at }}</td>
+                                                    <td>Rp.{{ number_format($item->harga, 0, ".", ".") }}</td>
+                                                    <td>{{ $item->status }}</td>
+                                                </tr>
+                                            </tbody>
+                                        @empty
+                                            <h3>Report Not Found</h3>
+                                        @endforelse
                                     </table>
                                 </div>
                             </div>
