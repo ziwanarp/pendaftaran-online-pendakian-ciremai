@@ -34,6 +34,10 @@ class AdminReportController extends Controller
                 $filterBy .= " Tahun ".$request->tahun.",";
                 $query .= " AND YEAR(created_at) = ".$request->tahun;
             }
+            if($request->status != null){
+                $filterBy .= " Status ".$request->status.",";
+                $query .= " AND status = '$request->status'";
+            }
             if($request->userId != null){
                 $filterBy .= " User ".$request->userId.",";
                 $query .= " AND user_id = ".$request->userId;

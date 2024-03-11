@@ -45,17 +45,17 @@
                 <div class="col-lg-6">
                     <div class="card mb-4">
                       <div class="card-body">
-                        {{-- <form action="/dashboard/user/" method="post" enctype="multipart/form-data">
-                          @csrf
-                          @method('put')
-                        <div class="row">
-                          <p class='text-center'>camera here</p>
+                        <div class="justify-content-center">
+                          <form id="formCheckin" action="/dashboard/checkin/" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('post')
+                            <h4 class="mb-2 text-center"><b>Scan QR Code</b> </h4>
+                            <video id="video" width="460" height="435" autoplay style="display: none"></video>
+                            <canvas id="canvas" width="460" height="435" style="display:'';"></canvas>
+                            <p class="mb-0"><b>Generated QR:</b> </p>
+                            <input type="text" class="form-control" id="kode_order_qr" name="kode_order" readonly >
+                          </form>
                         </div>
-                        <br>
-                        <div class="text-right">
-                          <button type="submit" class="btn btn-success">Capture</button>
-                        </div>
-                      </form> --}}
                       </div>
                     </div>
                 </div>
