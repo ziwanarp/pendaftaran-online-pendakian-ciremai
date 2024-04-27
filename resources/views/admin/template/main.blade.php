@@ -211,10 +211,9 @@
                 if (code) {
                     console.log("QR Code detected:", code.data);
                     $("#kode_order_qr").val(code.data);
-                     setTimeout(() => {
                          $("#formCheckin").submit();
-                     }, 2000);
-                }
+                         return
+                    }
             }
             requestAnimationFrame(tick);
         }
