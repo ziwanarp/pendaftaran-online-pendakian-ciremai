@@ -53,7 +53,7 @@
                 <div class="form-group">
                   <label for="tentang_body">Body</label>
                   @if (isset($data->tentang_body))
-                    <textarea class="form-control" id="tentang_body" name="tentang_body" value="{{ old('tentang_body', $data->tentang_body) }}" rows="3"></textarea>
+                    <textarea class="form-control" id="tentang_body" name="tentang_body" value="{{ old('tentang_body', $data->tentang_body) }}" rows="3">{{ old('tentang_body', $data->tentang_body) }}</textarea>
                   @else
                     <textarea class="form-control" id="tentang_body" name="tentang_body" value="{{ old('tentang_body') }}" rows="3"></textarea>
                   @endif

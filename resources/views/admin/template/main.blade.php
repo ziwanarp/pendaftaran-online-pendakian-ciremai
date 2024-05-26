@@ -21,6 +21,8 @@
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <!-- Datatables -->
     <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@latest/dist/jsQR.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
     @yield('style')
 
@@ -183,6 +185,40 @@
     <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
     @yield('script')
+
+        
+    <script>
+        
+        const video = document.createElement('video');
+        const canvasElement = document.getElementById('canvas');
+        const canvas = canvasElement.getContext('2d');
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(function(stream) {
+            video.srcObject = stream;
+            video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
+            video.play();
+            requestAnimationFrame(tick);
+        });
+
+        function tick() {
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                canvasElement.height = 345;
+                canvasElement.width = 460;
+                canvas.drawImage(video, 0, 0, 460, 345);
+                var imageData = canvas.getImageData(0, 0, 460, 345);
+                var code = jsQR(imageData.data, imageData.width, imageData.height);
+                if (code) {
+                    console.log("QR Code detected:", code.data);
+                    $("#kode_order_qr").val(code.data);
+                         $("#formCheckin").submit();
+                         return
+                    }
+            }
+            requestAnimationFrame(tick);
+        }
+    </script>
+
 
 </body>
 
